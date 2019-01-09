@@ -38,8 +38,9 @@ Programmation de Serveurs
 
 # :four: References:
 
-|Site| Lien                                    |
-|--------------------------------|--------|
+|Site                                     | Lien                                            |
+|-----------------------------------------|-------------------------------------------------|
+|Manning Functional Programming in Scala   |[Manning functional-programming-in-scala](https://www.manning.com/books/functional-programming-in-scala)|
 
 
 # :five: Glossaire:
