@@ -8,7 +8,7 @@ Programmation de Serveurs
 
 |No| Date   | Cours                   | Intitulé                                |  Commentaires    |
 |--|--------|:------------------------|:----------------------------------------|:-----------------|
-| 1|19-01-09|[0.GIT](0.GIT)           | Introduction a la programmation         |                  |
+| 1|19-01-09|[1.Scala](https://github.com/CollegeBoreal/Tutoriels/tree/master/1.Scala) | Installation Scala         |                  |
 | 2|19-01-16|                         |                                         |                  |
 | 3|19-01-23|                         |                                         |                  |
 | 4|19-02-30|                         |                                         |                  |
