@@ -27,11 +27,11 @@ Programmation de Serveurs
 
 ## :three: Concepts:
 
-- Category Theory: Functors, Monads
+- Cathegory Theory: Functors, Monads
 
-- Reactive Programming
+- Reactive Programming: Futures, Promise, Observable (RxJS)
 
-- ORM
+- ORM: Slick
 
 ```
 ```
