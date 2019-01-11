@@ -5,5 +5,16 @@
 et créer son premier projet Play
 
 ```bash
-$ sbt new playframework/play-scala-seed.g8
+$ sbt new playframework/play-scala-seed.g8 --name=<ID>
 ```
+
+
+```bash
+$ sbt ~run
+```
+
+
+http://localhost:9000
+
+
+
