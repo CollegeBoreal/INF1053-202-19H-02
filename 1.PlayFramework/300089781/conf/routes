@@ -4,10 +4,17 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET     /request                           controllers.HomeController.index
 
 # Mon action Bonjour
 GET    /bonjour/:nom                            controllers.HomeController.bonjour(nom: String)
 
+#mon action implicit
+GET     /action                         controllers.HomeController.action
+
+#mon action json
+GET         /json                   controllers.HomeController.json
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
