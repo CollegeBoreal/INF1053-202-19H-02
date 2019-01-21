@@ -26,4 +26,16 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
     Ok("Hello World = " + name)
   }
 
+  def action() = Action { implicit request =>
+    anotherMethod("some para value")
+    Ok("Got Request ["+ request + "]")
+  }
+
+  def anotherMethod(str: String)(implicit request: Request[_]) = {
+    //
+  }
+
+  def json() = Action(parse.json) { implicit request =>
+    Ok(" Got request[" + request + "]")
+  }
 }
