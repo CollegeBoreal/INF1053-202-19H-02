@@ -1,6 +1,17 @@
 # Web Application Server
 
-![image](./images/API.png)
-![image](./images/MVC.png)
-![image](./images/SPA-WAS.png)
+## Liste
+
 ![image](./images/WebApplicationServer.png)
+
+## Fonction
+
+![image](./images/API.png)
+
+## MVC Pattern
+
+![image](./images/MVC.png)
+
+## Relation entre cours
+
+![image](./images/SPA-WAS.png)
