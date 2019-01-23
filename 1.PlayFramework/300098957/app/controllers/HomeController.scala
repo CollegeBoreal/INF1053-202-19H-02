@@ -23,7 +23,7 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   }
 
   def hello(name: String) = Action {
-    Ok("Hello World = " + name)
+    Ok("ce que je mets ici + " + name)
   }
 
   def action() = Action { implicit request =>
