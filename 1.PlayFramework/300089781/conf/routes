@@ -13,8 +13,10 @@ GET    /bonjour/:nom                            controllers.HomeController.bonjo
 GET     /action                         controllers.HomeController.action
 
 #mon action json
-GET         /json                   controllers.HomeController.json
+GET         /json                   controllers.HomeController.json()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
+#hello action
+GET     /hello/:name                      controllers.HomeController.hello(name: String)
