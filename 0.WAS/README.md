@@ -1,6 +1,6 @@
 # Web Application Server
 
-![image](./API.png)
-![image](./MVC.png)
-![image](./SPA-WAS.png)
-![image](./WebApplicationServer.png)
+![image](./image/API.png)
+![image](./image/MVC.png)
+![image](./image/SPA-WAS.png)
+![image](./image/WebApplicationServer.png)
