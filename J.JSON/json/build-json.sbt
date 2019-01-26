@@ -1,0 +1,1 @@
+libraryDependencies += "com.dripower" %% "play-circe" % "2610.0"
