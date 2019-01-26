@@ -45,6 +45,13 @@ Programmation de Serveurs
 |Manning Functional Programming in Scala   |[Manning functional-programming-in-scala](https://www.manning.com/books/functional-programming-in-scala)|
 
 
+# :five: Livres:
+
+| Livre                                   | Lien                                            |
+|-----------------------------------------|-------------------------------------------------|
+| essential-slick-3.epub                  | [essential-slick-3.epub](https://github.com/underscoreio/books/blob/master/essential-slick/essential-slick-3.epub)
+
+
 # :five: Glossaire:
 
 | Principes                       | Lien                                               |
