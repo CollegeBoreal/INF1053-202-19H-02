@@ -33,6 +33,8 @@ Programmation de Serveurs
 
 - ORM: Slick
 
+- Parser: [JSON](https://github.com/jilen/play-circe) 
+
 ```
 ```
 
