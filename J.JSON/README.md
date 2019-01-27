@@ -5,7 +5,7 @@ https://github.com/jilen/play-circe
 POST Testing
 
 ```
-$ curl -X POST \
+$ curl --request POST \
        --header 'Content-Type: application/json' \
        --header 'Accept: application/json' \
        --data '{"foo":"foo","bar":{"bar":1}}' \
