@@ -11,3 +11,6 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 #page
 GET     /mapage      controllers.HomeController.mapage()
+
+#places
+GET     /listPlaces             controllers.HomeController.listPlaces()
