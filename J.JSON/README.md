@@ -1,6 +1,6 @@
 # JSON
 
-https://github.com/jilen/play-circe
+https://www.playframework.com/documentation/2.6.x/ScalaJson
 
 POST Testing
 
