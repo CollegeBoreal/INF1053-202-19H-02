@@ -32,7 +32,6 @@ root@c2da6ee122d8:/# su - postgres
 
 ```
 $ postgres@c2da6ee122d8:~$ createdb -O postgres playdb
-$ postgres@c2da6ee122d8:~$ createdb playdb
 ```
 
 * rentrer dans le CLI postgres
