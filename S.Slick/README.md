@@ -6,6 +6,11 @@
 $ sbt new excellalabs/play-slick-postgres.g8 --name=<ID>
 ```
 
+## PostgreSQL
+
+```
+$ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+```
 
 ## Framework Slick
 
