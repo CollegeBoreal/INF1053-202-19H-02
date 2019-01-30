@@ -1,7 +1,13 @@
 # Slick (ORM)
 
+## G8 Template
 
-# Framework Slick
+```
+$ sbt new excellalabs/play-slick-postgres.g8
+```
+
+
+## Framework Slick
 
 https://www.playframework.com/documentation/2.6.x/PlaySlick
 
