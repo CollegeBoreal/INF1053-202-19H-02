@@ -43,7 +43,7 @@ postgres@c2da6ee122d8:~$ psql
 * dans le PSQL CLI creer les permissions
 
 ```
-postgres=# GRANT permissions ON DATABASE playdb TO postgres;
+postgres=# GRANT ALL ON DATABASE playdb TO postgres;
 ```
 
 
