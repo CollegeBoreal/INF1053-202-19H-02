@@ -3,7 +3,7 @@
 ## G8 Template
 
 ```
-$ sbt new excellalabs/play-slick-postgres.g8
+$ sbt new excellalabs/play-slick-postgres.g8 --name=<ID>
 ```
 
 
