@@ -5,39 +5,36 @@ import models.{Customer, Product}
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
+
 import scala.concurrent.{ExecutionContext, Future}
 
-trait ProductsComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
+
+
+trait CustomerComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
   import profile.api._
   import slick.lifted.ProvenShape
 
-  class ProductTable(tag: Tag) extends Table[Product](tag, "products") {
-    def id: Rep[Int] = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
-    // scalastyle:off magic.number
-    def sku: Rep[String] = column[String]("sku", O.Length(31, varying = true))
-    def name: Rep[String] =
-      column[String]("name", O.Length(127, varying = true))
-    def description: Rep[String] =
-      column[String]("description", O.Length(511, varying = true))
-    // scalastyle:on magic.number
+  class CustomerTable (tag: Tag) extends Table[Customer](tag, "customers"){
 
-    // scalastyle:off method.name
-    override def * : ProvenShape[Product] =
-      (id.?, sku, name, description) <> (Product.tupled, Product.unapply)
-    // scalastyle: on method.name
+    def customer: Rep[Int] = column[Int]("customer", O.PrimaryKey, O.AutoInc)
+
+    def name: Rep[String] = column[String]("name",O.Length(45, varying = true))
+
+    def phone: Rep[String] = column[String]("phone",O.Length(45, varying = true))
+
+    override def * : ProvenShape[Customer] =
+      (customer?, name, phone) <> (Customer.tupled, Customer.unapply)
   }
 }
 
-@Singleton()
-class CustomerDao @Inject()(
-    protected val dbConfigProvider: DatabaseConfigProvider)(
-    implicit executionContext: ExecutionContext)
-    extends Customer
-    with HasDatabaseConfigProvider[JdbcProfile] {
+@Singleton
+class CustomerDao @Inject()
+(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext)
+  extends CustomerComponent
+with HasDatabaseConfigProvider[JdbcProfile]{
   import profile.api._
 
-  val products = TableQuery[Customer]
-
-  def getAll: Future[Seq[Product]] = db.run(customer)
+  val customers= TableQuery[CustomerTable]
+  def getAll: Future [Seq[Customer]] = db.run(customers.result)
 }
