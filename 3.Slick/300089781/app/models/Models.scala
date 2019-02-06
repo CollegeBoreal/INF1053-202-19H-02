@@ -7,4 +7,6 @@ case class Product(id: Option[Int],
                    name: String,
                    description: String)
 
-case class Customer(customer: Option[Int], name: String)
+case class Customer(customer: Option[Int],
+                    name: String,
+                    phone: String)
