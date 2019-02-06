@@ -38,7 +38,7 @@ GET     /api/product/all            controllers.ProductController.getAll
 #        items:
 #            $ref: '#/definitions/models.Customer'
 ###
-GET    /api/customer/all           controllers.CustomerController.getAll
+#GET    /api/customer/all           controllers.CustomerController.getAll
 
 ### NoDocs ###
 GET     /api-docs                   controllers.Default.redirect(to="/assets/lib/swagger-ui/index.html?url=/assets/swagger.json")

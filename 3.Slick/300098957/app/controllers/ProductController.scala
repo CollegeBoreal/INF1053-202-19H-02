@@ -13,12 +13,10 @@ class ProductController @Inject()(
     cc: ControllerComponents,
     productsDao: ProductsDao)(implicit ec: ExecutionContext)
     extends AbstractController(cc) {
+
   implicit val fmt: Format[Product] = Json.format[Product]
 
   def getAll: Action[AnyContent] = Action.async { implicit request =>
-    val allProductsFuture: Future[Seq[Product]] = productsDao.getAll
-    allProductsFuture.map { products =>
-      Ok(Json.toJson(products))
-    }
+    for { products <- productsDao.getAll } yield Ok(Json.toJson(products))
   }
 }

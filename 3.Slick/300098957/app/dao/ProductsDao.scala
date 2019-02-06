@@ -12,11 +12,11 @@ import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
 
-trait ProductsComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
+trait ProductsDto { self: HasDatabaseConfigProvider[JdbcProfile] =>
   import profile.api._
   import slick.lifted.ProvenShape
 
-  class ProductTable(tag: Tag) extends Table[Product](tag, "products") {
+  class ProductRow(tag: Tag) extends Table[Product](tag, "products") {
     def id: Rep[Int] = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
     // scalastyle:off magic.number
@@ -38,11 +38,11 @@ trait ProductsComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 class ProductsDao @Inject()(
     protected val dbConfigProvider: DatabaseConfigProvider)(
     implicit executionContext: ExecutionContext)
-    extends ProductsComponent
+    extends ProductsDto
     with HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
 
-  val products = TableQuery[ProductTable]
+  val products = TableQuery[ProductRow]
 
   def getAll: Future[Seq[Product]] = db.run(products.result)
 }
