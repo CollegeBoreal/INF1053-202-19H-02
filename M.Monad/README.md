@@ -5,6 +5,8 @@
 
 https://github.com/CollegeBoreal/play-slick-mysql.g8
 
-* 
+* Modele
+
+![alt tag](./CraveNG.png)
 
 
