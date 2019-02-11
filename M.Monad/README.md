@@ -8,13 +8,17 @@ https://github.com/CollegeBoreal/play-slick-mysql.g8
 * Modele
 
 En fonction du modele suivant , 
-```
+
   -  creer les fichiers `evolutions` nescessaire permettant :
+  ```
      -> la creation de tables et 
      -> les enregistrements nesessaires 
   ```
-  - creer les DAO correspondants
+  - creer les DAO et composants Slick correspondant
 
 ![alt tag](./CraveNG.png)
 
+* Routage:
+
+Creer les controlleurs et le routage correspondant 
 
