@@ -6,14 +6,19 @@ Programmation de Serveurs
 
 ## :two: Elements de Performance
 
+1.PlayFramework	Amelie	19 days ago
+2.json	Merge branch 'build.sbt'	14 days ago
+3.Slick	🔥	4 days ago
+4.Monad
+
 |No| Date   | Cours                   | Intitulé                                |  Commentaires    |
 |--|--------|:------------------------|:----------------------------------------|:-----------------|
-| 1|19-01-09|[1.Scala](https://github.com/CollegeBoreal/Tutoriels/tree/master/1.Scala) | Installation Scala         |                  |
-| 2|19-01-16|                         |                                         |                  |
-| 3|19-01-23|                         |                                         |                  |
-| 4|19-01-30|                         |                                         |                  |
+| 1|19-01-09|[0.Scala](https://github.com/CollegeBoreal/Tutoriels/tree/master/1.Scala) | Installation Scala         |                  |
+| 2|19-01-16| [1.PlayFramework](./1.PlayFramework) |                            |                  |
+| 3|19-01-23| [2.json](./2.json)      |                                         |                  |
+| 4|19-01-30| [3.Slick](./3.Slick)    |                                         |                  |
 | 5|19-02-06|                         |                                         |                  |
-| 6|19-02-13|                         |                                         |                  |
+| 6|19-02-13| [4.Monad](./4.Monad)    |                                         |                  |
 | 7|19-02-20|                         |                                         |                  |
 | 8|19-02-27| March Break             |                                         |                  |
 | 9|19-03-06|                         |                                         |                  |
