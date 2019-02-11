@@ -22,3 +22,19 @@ En fonction du modele suivant ,
 
 Creer les controlleurs et le routage correspondant 
 
+* Repartition suggéree:
+
+300089781: 
+
+| Tables    |
+|-----------|
+| ARTISTS   |
+| LOGINS    |
+| PASSWORDS |
+
+300108495: 
+
+| Tables    |
+|-----------|
+| MEMBERS   |
+| BANDS     |
