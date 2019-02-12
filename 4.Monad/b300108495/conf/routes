@@ -39,6 +39,8 @@ GET     /api/product/all            controllers.ProductController.getAll
 #            $ref: '#/definitions/models.Customer'
 ###
 GET     /api/member/all            controllers.MemberController.getAll
+
+GET     /api/band/all            controllers.BandController.getAll
 #GET    /api/customer/all           controllers.CustomerController.getAll
 
 ### NoDocs ###

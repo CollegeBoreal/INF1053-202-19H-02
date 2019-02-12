@@ -14,10 +14,9 @@ class MemberController @Inject()(
     membersDao: MembersDao)(implicit ec: ExecutionContext)
     extends AbstractController(cc) {
 
-    implicit val fmt: Format[Member] = Json.format[Member]
+  implicit val fmt: Format[Member] = Json.format[Member]
 
-    def getAll: Action[AnyContent] = Action.async { implicit request =>
-      for { members <- membersDao.getAll } yield Ok(Json.toJson(members))
-    }
+  def getAll: Action[AnyContent] = Action.async { implicit request =>
+    for { members <- membersDao.getAll } yield Ok(Json.toJson(members))
   }
-
+}
