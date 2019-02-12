@@ -1,4 +1,4 @@
-name := "300300333333300108495"
+name := "b300108495"
 description := "Example Play App set up to use Slick with MySQL and Evolutions"
 version := "1.0-SNAPSHOT"
 organization := "ca.collegeboreal"
