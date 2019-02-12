@@ -38,6 +38,7 @@ GET     /api/product/all            controllers.ProductController.getAll
 #        items:
 #            $ref: '#/definitions/models.Customer'
 ###
+GET     /api/member/all            controllers.MemberController.getAll
 #GET    /api/customer/all           controllers.CustomerController.getAll
 
 ### NoDocs ###

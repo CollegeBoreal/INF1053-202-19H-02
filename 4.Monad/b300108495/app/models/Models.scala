@@ -8,3 +8,7 @@ case class Product(id: Option[Int],
                    description: String)
 
 case class Customer(customer: Option[Int], name: String, phone: String)
+
+case class Member(since: Option[Int],
+                   band: String,
+                   artist: String)
