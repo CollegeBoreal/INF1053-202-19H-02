@@ -11,7 +11,7 @@ class BandControllerSpec extends SlickInMemorySpec with Results {
   "The band controller" should {
     "respond to getAll with a list of bands" in {
       val controller: BandController =
-        app.injector.instanceOf[BandController ]
+        app.injector.instanceOf[BandController]
       val result: Future[Result] = controller.getAll.apply(FakeRequest())
       val bodyText: String = contentAsString(result)
       status(result) mustEqual OK

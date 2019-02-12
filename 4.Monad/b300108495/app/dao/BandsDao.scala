@@ -17,7 +17,7 @@ trait BandsComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
   import slick.lifted.ProvenShape
 
   class BandTable(tag: Tag) extends Table[Band](tag, "bands") {
-    def band: Rep[Int] = column[Int]("id", O.PrimaryKey, O.AutoInc)
+    def band: Rep[Int] = column[Int]("band", O.PrimaryKey, O.AutoInc)
 
     // scalastyle:off magic.number
     def name: Rep[String] =
@@ -34,14 +34,13 @@ trait BandsComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 }
 
 @Singleton()
-class ProductsDao @Inject()(
-                             protected val dbConfigProvider: DatabaseConfigProvider)(
-                             implicit executionContext: ExecutionContext)
-  extends ProductsComponent
+class BandsDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
+    implicit executionContext: ExecutionContext)
+    extends BandsComponent
     with HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
 
-  val products = TableQuery[ProductTable]
+  val bands = TableQuery[BandTable]
 
-  def getAll: Future[Seq[Product]] = db.run(products.result)
+  def getAll: Future[Seq[Band]] = db.run(bands.result)
 }
