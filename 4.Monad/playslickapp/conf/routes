@@ -29,6 +29,39 @@ GET     /api/message                controllers.MessageController.getMessage
 GET     /api/product/all            controllers.ProductController.getAll
 
 ###
+# summary: Get a list of all artists
+# responses:
+#  200:
+#    description: Successfully listed all artists
+#       schema:
+#           type: array
+#             items:
+#               $ref: '#/definitions/models.Artists'
+
+GET     /api/artist/all            controllers.ArtistsController.getAll
+
+###
+#summary: Get a list of all logins
+## responses:
+##  200:
+##    description: Successfully listed all logins
+##       schema:
+##           type: array
+##             items:
+##               $ref: '#/definitions/models.Logins'
+GET     /api/login/all             controllers.LoginsController.getAll
+
+###
+#summary: Get a list of all passwords
+## responses:
+##  200:
+##    description: Successfully listed all passwords
+##       schema:
+##           type: array
+##             items:
+##               $ref: '#/definitions/models.Passwords'
+GET     /api/password/all          controllers.PasswordsController.getAll
+###
 # summary: Get a list of all customers
 # responses:
 #    200:
