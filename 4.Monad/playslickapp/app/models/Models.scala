@@ -1,5 +1,7 @@
 package models
 
+import slick.dbio.{DBIOAction, NoStream}
+
 case class Message(message: String)
 
 case class Product(id: Option[Int],
@@ -8,3 +10,9 @@ case class Product(id: Option[Int],
                    description: String)
 
 case class Customer(customer: Option[Int], name: String, phone: String)
+
+case class Artists(artists: Option[Int], name: String, band: String)
+
+case class Logins(logins: Option[Int], name: String, phone: String)
+
+case class Passwords(passwords: Option[Int], artist: String)

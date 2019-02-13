@@ -29,6 +29,14 @@ GET     /api/message                controllers.MessageController.getMessage
 GET     /api/product/all            controllers.ProductController.getAll
 
 ###
+GET     /api/artists/all            controllers.ArtistsController.getAll
+
+###
+GET     /api/logins/all             controllers.LoginsController.getAll
+
+###
+GET     /api/passwords/all          controllers.PasswordsController.getAll
+###
 # summary: Get a list of all customers
 # responses:
 #    200:
