@@ -1,5 +1,7 @@
 package models
 
+import java.sql.Timestamp
+
 case class Message(message: String)
 
 case class Product(id: Option[Int],
@@ -9,6 +11,6 @@ case class Product(id: Option[Int],
 
 case class Customer(customer: Option[Int], name: String, phone: String)
 
-case class Member(since: Option[Int], band: String, artist: String)
+case class Member(band: Option[Int], artist: Int, since: Timestamp)
 
 case class Band(band: Option[Int], name: String, description: String)

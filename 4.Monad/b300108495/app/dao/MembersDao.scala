@@ -5,10 +5,10 @@
 
 package dao
 
-import java.lang.reflect.Member
+import java.sql.Timestamp
 
 import javax.inject.{Inject, Singleton}
-import models.Product
+import models.{Member, Product}
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
@@ -19,13 +19,14 @@ trait MembersComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
   import slick.lifted.ProvenShape
 
   class MemberTable(tag: Tag) extends Table[Member](tag, "members") {
-    def band: Rep[String] = column[String]("band", O.PrimaryKey, O.AutoInc)
+    def band: Rep[Int] =
+      column[Int]("band", O.PrimaryKey, O.AutoInc)
 
     // scalastyle:off magic.number
-    def artist: Rep[String] =
-      column[String]("artist", O.Length(31, varying = true))
-    def since: Rep[Int] =
-      column[Int]("since", O.Length(127, varying = true))
+    def artist: Rep[Int] =
+      column[Int]("artist", O.Length(31, varying = true))
+    def since: Rep[Timestamp] =
+      column[Timestamp]("since", O.Length(127, varying = true))
 
     // scalastyle:off method.name
     override def * : ProvenShape[Member] =

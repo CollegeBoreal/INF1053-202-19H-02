@@ -3,16 +3,5 @@ CREATE TABLE MEMBERS (
   `artist` BIGINT(20) NOT NULL,
   `since` TIMESTAMP NULL,
   PRIMARY KEY (`band`, `artist`),
-  INDEX `fk_MEMBERS_ARTISTS1_idx` (`artist` ASC) VISIBLE,
-  INDEX `fk_MEMBERS_BANDS1_idx` (`band` ASC) VISIBLE,
-  CONSTRAINT `fk_MEMBERS_ARTISTS1`
-    FOREIGN KEY (`artist`)
-    REFERENCES `crave-artists`.`ARTISTS` (`artist`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_MEMBERS_BANDS1`
-    FOREIGN KEY (`band`)
-    REFERENCES `crave-artists`.`BANDS` (`band`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+
 ;
