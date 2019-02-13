@@ -1,6 +1,5 @@
 package controllers
-import akka.http.scaladsl.model.HttpHeader.ParsingResult.Ok
-import dao.MembersDao
+import dao.{MembersDao}
 import javax.inject.{Inject, Singleton}
 import models.Member
 import play.api.libs.json.{Format, Json}
