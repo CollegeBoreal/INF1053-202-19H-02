@@ -13,20 +13,20 @@ trait LoginsComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
   import profile.api._
   import slick.lifted.ProvenShape
 
-  class LoginsTable(tag: Tag) extends Table[Logins](tag, "logins") {
+  class LoginsTable(tag: Tag) extends Table[Logins](tag, "LOGINS") {
 
     // scalastyle:off magic.number
-    def logins: Rep[Int] = column[Int]("logins", O.PrimaryKey, O.AutoInc)
+    def login: Rep[Int] = column[Int]("login", O.PrimaryKey, O.AutoInc)
 
-    def name: Rep[String] = column[String]("name", O.Length(45, varying = true))
+    def providerId: Rep[String] =
+      column[String]("providerId", O.Length(45, varying = true))
 
-    def phone: Rep[String] =
-      column[String]("phone", O.Length(45, varying = true))
-    // scalastyle:on magic.number
+    def providerKey: Rep[String] =
+      column[String]("providerKey", O.Length(45, varying = true))
 
     // scalastyle:off method.name
     override def * : ProvenShape[Logins] =
-      (logins?, name, phone) <> (Logins.tupled, Logins.unapply)
+      (login ?, providerId, providerKey) <> (Logins.tupled, Logins.unapply)
     // scalastyle:on method.name
 
   }
@@ -35,9 +35,9 @@ trait LoginsComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 
 @Singleton
 class LoginsDao @Inject()(
-                              protected val dbConfigProvider: DatabaseConfigProvider)(
-                              implicit executionContext: ExecutionContext)
-  extends LoginsComponent
+    protected val dbConfigProvider: DatabaseConfigProvider)(
+    implicit executionContext: ExecutionContext)
+    extends LoginsComponent
     with HasDatabaseConfigProvider[JdbcProfile] {
 
   import profile.api._

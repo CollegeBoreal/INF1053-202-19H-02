@@ -1,32 +1,34 @@
 package dao
 
 import javax.inject.{Inject, Singleton}
-import models.{Artists, Customer}
+import models.Artists
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 import slick.lifted
-
-
 import scala.concurrent.{ExecutionContext, Future}
 
 trait ArtistsComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
   import profile.api._
   import slick.lifted.ProvenShape
 
-  class ArtistsTable(tag: Tag) extends Table[Artists](tag, "artists") {
+  class ArtistsTable(tag: Tag) extends Table[Artists](tag, "ARTISTS") {
 
     // scalastyle:off magic.number
-    def artists: Rep[Int] = column[Int]("artists", O.PrimaryKey, O.AutoInc)
+    def artist: Rep[Int] = column[Int]("artist", O.PrimaryKey, O.AutoInc)
 
-    def name: Rep[String] = column[String]("name", O.Length(45, varying = true))
+    def number: Rep[String] =
+      column[String]("number", O.Length(45, varying = true))
 
-    def band: Rep[String] =
-      column[String]("phone", O.Length(45, varying = true))
-    // scalastyle:on magic.number
+    def email: Rep[String] =
+      column[String]("email", O.Length(45, varying = true))
+
+    def active: Rep[Boolean] = column[Boolean]("active")
+
+    def created: Rep[java.sql.Timestamp] = column[java.sql.Timestamp]("created")
 
     // scalastyle:off method.name
     override def * : ProvenShape[Artists] =
-      (artists ?, name, band) <> (Artists.tupled, Artists.unapply)
+      (artist ?, number, email, active, created) <> (Artists.tupled, Artists.unapply)
     // scalastyle:on method.name
 
   }
@@ -35,9 +37,9 @@ trait ArtistsComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 
 @Singleton
 class ArtistsDao @Inject()(
-                              protected val dbConfigProvider: DatabaseConfigProvider)(
-                              implicit executionContext: ExecutionContext)
-  extends ArtistsComponent
+    protected val dbConfigProvider: DatabaseConfigProvider)(
+    implicit executionContext: ExecutionContext)
+    extends ArtistsComponent
     with HasDatabaseConfigProvider[JdbcProfile] {
 
   import profile.api._
