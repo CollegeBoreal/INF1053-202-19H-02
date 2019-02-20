@@ -2,6 +2,7 @@
 
 # --- !Ups
 
-
+INSERT INTO LOGINS (login, providerId, providerKey)
+VALUES
 # --- !Downs
 

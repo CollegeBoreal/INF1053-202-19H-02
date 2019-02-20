@@ -2,5 +2,7 @@
 
 # --- !Ups
 
+INSERT INTO ARTISTS ()
+VALUES ()
 # --- !Downs
 
