@@ -1,4 +1,5 @@
 # oAuth2
 
-
-https://github.com/CollegeBoreal/play-silhouette-rest-mongo
+```
+$ sbt new CollegeBoreal/play-silhouette-mongo.g8 --name=<mon ID>
+```
