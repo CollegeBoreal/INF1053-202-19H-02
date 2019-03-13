@@ -1,6 +1,6 @@
 package controllers
 
-import controllers.BandController
+import common.SlickInMemorySpec
 import play.api.mvc.{Result, Results}
 import play.api.test.FakeRequest
 import play.api.test.Helpers._

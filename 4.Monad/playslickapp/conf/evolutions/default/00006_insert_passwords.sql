@@ -2,6 +2,8 @@
 
 # --- !Ups
 
+INSERT INTO LOGIN (password, hasher, salt)
+VALUES
 
 # --- !Downs
 

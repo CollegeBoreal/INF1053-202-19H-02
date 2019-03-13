@@ -2,5 +2,5 @@
 
 # --- !Ups
 
-INSERT INTO members (band, artist, since)
-VALUES  ('Rock'),('Jhonny'),('2003') ;
+INSERT INTO MEMBERS (band, artist, since)
+VALUES  ('1','123','2003-04-12') ;
