@@ -1,0 +1,60 @@
+2019-03-18 14:24:45,489 [DEBUG] from controllers.AssetsConfiguration in play-dev-mode-akka.actor.default-dispatcher-2 - Using the following cache configuration for assets:
+	 enableCaching = false
+	 enableCacheControl = false
+	 defaultCacheControl = public, max-age=3600
+	 aggressiveCacheControl = public, max-age=31536000, immutable
+	 configuredCacheControl:
+
+
+2019-03-18 14:24:45,714 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-2 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    play.filters.cors.CORSFilter
+
+2019-03-18 14:24:51,091 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-2 - Application started (Dev)
+2019-03-18 14:27:16,173 [INFO] from play.mailer in application-akka.actor.default-dispatcher-8 - mock implementation, send email
+2019-03-18 14:27:16,186 [INFO] from play.mailer in application-akka.actor.default-dispatcher-8 - subject: Welcome
+2019-03-18 14:27:16,188 [INFO] from play.mailer in application-akka.actor.default-dispatcher-8 - from: Silhouette <noreply@mohiva.com>
+2019-03-18 14:27:16,191 [INFO] from play.mailer in application-akka.actor.default-dispatcher-8 - bodyText: Hello adam.zareba@test.pl,
+
+Please follow the link to confirm and activate your new account: http://localhost:9000/
+
+2019-03-18 14:27:16,193 [INFO] from play.mailer in application-akka.actor.default-dispatcher-8 - bodyHtml: 
+<html>
+    <body>
+        <p>Hello adam.zareba@test.pl,</p>
+        <p>Please follow <a href="http://localhost:9000/">this link</a> to confirm and activate your new account.</p>
+    </body>
+</html>
+
+2019-03-18 14:27:16,194 [INFO] from play.mailer in application-akka.actor.default-dispatcher-8 - to: adam.zareba@test.pl
+2019-03-18 14:30:26,143 [INFO] from play.mailer in application-akka.actor.default-dispatcher-6 - mock implementation, send email
+2019-03-18 14:30:26,147 [INFO] from play.mailer in application-akka.actor.default-dispatcher-6 - subject: Welcome
+2019-03-18 14:30:26,147 [INFO] from play.mailer in application-akka.actor.default-dispatcher-6 - from: Silhouette <noreply@mohiva.com>
+2019-03-18 14:30:26,148 [INFO] from play.mailer in application-akka.actor.default-dispatcher-6 - bodyText: Hello amelie.dubois@monboreal.ca,
+
+Please follow the link to confirm and activate your new account: http://localhost:4200/
+
+2019-03-18 14:30:26,167 [INFO] from play.mailer in application-akka.actor.default-dispatcher-6 - bodyHtml: 
+<html>
+    <body>
+        <p>Hello amelie.dubois@monboreal.ca,</p>
+        <p>Please follow <a href="http://localhost:4200/">this link</a> to confirm and activate your new account.</p>
+    </body>
+</html>
+
+2019-03-18 14:30:26,175 [INFO] from play.mailer in application-akka.actor.default-dispatcher-6 - to: amelie.dubois@monboreal.ca
+2019-03-18 14:30:27,424 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - Displaying headers :-------------------------------------------------------------------
+2019-03-18 14:30:28,464 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: Host, value: localhost:4200
+2019-03-18 14:30:28,464 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: Accept, value: application/json, text/plain, */*
+2019-03-18 14:30:28,465 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: referer, value: http://localhost:4200/
+2019-03-18 14:30:28,465 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: Connection, value: close
+2019-03-18 14:30:28,466 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: user-agent, value: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
+2019-03-18 14:30:28,466 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: x-auth-token, value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLWRDYjJhZ0F6K0RUME54alI3MHZURFRkeHdHUWE0ejlWT1c5UXgrNEVZeUZDUmJLQWJyTnhWNlBhUXVVVXcwQWZJUUdLRXl2R1VMVitQa1NLTWxmbXRlVmY3OStmdFNLQ1pZbXFNZ2hWekNXWUJZVmFJaUk1IiwiaXNzIjoicGxheS1zaWxob3VldHRlIiwiZXhwIjoxNTUyOTc3MDI1LCJpYXQiOjE1NTI5MzM4MjUsImp0aSI6ImZhMDBlMjJjYjg0NTk0ZGQ2ODE4OTEyMjVhNjVjZDY0ZDEzNmU2ZDAwOTg0MmQ0MmY2ZmJiMGJmYzllNzRmY2E1YzEyOThhZDY1YjAyY2EyZGNhMTkyYWQ2ODgwZjRkZDI2ZjQ3YmM5MDdlODk4MDFiYjBhM2VlOTM3ODMyZGZlOGU1MWI5NTNhZjYzNjM1MTYwNDM4NmE0YmE3M2I0YmM2ZjBhOWUzMjQxOTdlYzBjMDI4YzQ3ZGNlOWQ0OGI2MTE5ODk1MTlmY2VjOGE2Y2E1M2E1MWYxNTY0NGVjOWIwNTgyODc5NTc3ZWQ0ODQzZDBjOWQzYmU3YmNjMGIyMWQifQ.PbIvjIZ153i8ZROrRciF9CkF51mEQqOo-RYCAgFH9FM
+2019-03-18 14:30:28,467 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: Remote-Address, value: 127.0.0.1:58431
+2019-03-18 14:30:28,478 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: Timeout-Access, value: <function1>
+2019-03-18 14:30:28,480 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: accept-encoding, value: gzip, deflate, br
+2019-03-18 14:30:28,480 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: accept-language, value: en-US,en;q=0.9,fr;q=0.8
+2019-03-18 14:30:28,480 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: Raw-Request-URI, value: /api/badPassword
+2019-03-18 14:30:28,480 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-138 - key: Tls-Session-Info, value: Session(1552933419450|SSL_NULL_WITH_NULL_NULL)
