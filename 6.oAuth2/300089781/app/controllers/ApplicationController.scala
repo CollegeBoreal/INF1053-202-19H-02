@@ -51,7 +51,7 @@ class ApplicationController @Inject()(components: ControllerComponents,
   }
 
   @ApiOperation(value = "Get colors")
-  def colors = Action.async {
+  def colors = silhouette.SecuredAction.async {
     Future.successful(Ok(Json.arr("black", "blue", "green", "red", "white")))
   }
 }
