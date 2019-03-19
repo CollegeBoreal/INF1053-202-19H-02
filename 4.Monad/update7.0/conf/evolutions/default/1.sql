@@ -1,6 +1,6 @@
-# products schema
+-- products schema
 
-# --- !Ups
+-- !Ups
 
 CREATE TABLE products (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '	',
@@ -10,6 +10,6 @@ CREATE TABLE products (
   PRIMARY KEY (`id`)
 );
 
-# --- !Downs
+-- !Downs
 
 DROP TABLE products;

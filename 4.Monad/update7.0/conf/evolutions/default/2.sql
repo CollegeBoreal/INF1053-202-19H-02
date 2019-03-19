@@ -1,6 +1,6 @@
-# Sample data for products schema
+-- Sample data for products schema
 
-# --- !Ups
+-- !Ups
 
 INSERT INTO products (sku, name, description)
 VALUES ('bppen-red-na', 'Excella Pen', 'Ballpoint click pen with red body and black clicker, white Excella logo'),
@@ -8,7 +8,7 @@ VALUES ('bppen-red-na', 'Excella Pen', 'Ballpoint click pen with red body and bl
        ('mug-gry-sma', 'Excella Mug', '8oz gray mug with white Excella branding and red-orange interior'),
        ('tmblr-stl-med', 'Excella Steel Tumbler', '16oz Steel Tumbler with black Excella branding');
 
-# --- !Downs
+-- !Downs
 
 DELETE FROM products
  WHERE sku IN (
