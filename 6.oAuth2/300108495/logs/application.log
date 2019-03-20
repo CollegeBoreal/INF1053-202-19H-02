@@ -1,0 +1,45 @@
+2019-03-20 10:54:53,976 [DEBUG] from controllers.AssetsConfiguration in play-dev-mode-akka.actor.default-dispatcher-4 - Using the following cache configuration for assets:
+	 enableCaching = false
+	 enableCacheControl = false
+	 defaultCacheControl = public, max-age=3600
+	 aggressiveCacheControl = public, max-age=31536000, immutable
+	 configuredCacheControl:
+
+
+2019-03-20 10:54:54,033 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-4 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    play.filters.cors.CORSFilter
+
+2019-03-20 10:54:54,784 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-4 - Application started (Dev)
+2019-03-20 10:55:03,358 [WARN] from reactivemongo.api.MongoConnection in application-akka.actor.default-dispatcher-5 - [Supervisor-1/Connection-2] Timeout while probing the connection monitor
+2019-03-20 10:55:03,395 [ERROR] from application in application-akka.actor.default-dispatcher-4 - 
+
+! @7b9egpafa - Internal server error, for (POST) [/api/auth/login] ->
+ 
+play.api.http.HttpErrorHandlerExceptions$$anon$1: Execution exception[[PrimaryUnavailableException: MongoError['No primary node is available! (Supervisor-1/Connection-2)']]]
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:251)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:178)
+	at play.core.server.AkkaHttpServer$$anonfun$1.applyOrElse(AkkaHttpServer.scala:382)
+	at play.core.server.AkkaHttpServer$$anonfun$1.applyOrElse(AkkaHttpServer.scala:380)
+	at scala.concurrent.Future.$anonfun$recoverWith$1(Future.scala:417)
+	at scala.concurrent.impl.Promise.$anonfun$transformWith$1(Promise.scala:41)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:64)
+	at akka.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:55)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:91)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:85)
+	at akka.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:91)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:40)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:44)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+Caused by: reactivemongo.core.actors.Exceptions$PrimaryUnavailableException: MongoError['No primary node is available! (Supervisor-1/Connection-2)']
+	at play.modules.reactivemongo.DefaultReactiveMongoApi.database(DefaultReactiveMongoApi.scala:89)
+	at reactivemongo.api.MongoConnection.database(MongoConnection.scala:128)
+Caused by: reactivemongo.core.actors.Exceptions$InternalState: null
+	at reactivemongo.ChannelClosed(-1179421762, {{NodeSet None Node[192.168.99.100:27017: Unknown (0/1 available connections), latency=9223372036854775807, authenticated=Set()] }})(<time:1553093696352>)
+	at reactivemongo.Init({{NodeSet None Node[192.168.99.100:27017: Unknown (0/1 available connections), latency=9223372036854775807, authenticated=Set()] }})(<time:1553093695295>)
