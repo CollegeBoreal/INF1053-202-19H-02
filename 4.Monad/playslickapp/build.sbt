@@ -1,4 +1,4 @@
-name := "update7.0"
+name := "PlaySlickApp"
 description := "Example Play App set up to use Slick with MySQL and Evolutions"
 version := "1.0-SNAPSHOT"
 organization := "ca.collegeboreal"
