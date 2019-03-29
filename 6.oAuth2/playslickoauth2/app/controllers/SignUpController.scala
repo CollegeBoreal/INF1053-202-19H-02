@@ -1,13 +1,13 @@
 package controllers
 
-import javax.inject.Inject
+import java.util.Calendar
 
+import javax.inject.Inject
 import com.mohiva.play.silhouette.api.repositories.AuthInfoRepository
 import com.mohiva.play.silhouette.api.services.AvatarService
 import com.mohiva.play.silhouette.api.util.{Clock, PasswordHasherRegistry}
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
-import com.sun.tools.javac.util.DefinedBy.Api
 import daos.UserDao
 import io.swagger.annotations.{
   Api,
@@ -15,11 +15,11 @@ import io.swagger.annotations.{
   ApiImplicitParams,
   ApiOperation
 }
+import models.auth.DefaultEnv
 import models.{SignUp, Token, User}
 import play.api.Configuration
-import play.api.i18n.{I18nSupport, Messages, MessagesApi}
+import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.{JsError, JsValue, Json, OFormat}
-import play.api.libs.mailer.{Email, MailerClient}
 import play.api.mvc.{AbstractController, Action, ControllerComponents}
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -35,7 +35,6 @@ class SignUpController @Inject()(
     authInfoRepository: AuthInfoRepository,
     passwordHasherRegistry: PasswordHasherRegistry,
     avatarService: AvatarService,
-    mailerClient: MailerClient,
     messagesApi: MessagesApi)(implicit ex: ExecutionContext)
     extends AbstractController(components)
     with I18nSupport {
@@ -63,17 +62,15 @@ class SignUpController @Inject()(
           case None =>
             /* user not already exists */
             val user = User(None,
-                            loginInfo,
-                            loginInfo.providerKey,
-                            signUp.email,
-                            signUp.fullName,
-                            None,
-                            true)
+                            key = loginInfo.providerKey,
+                            active = true,
+                            created = java.sql.Timestamp.valueOf(
+                              Calendar.getInstance().getTime.toString))
+
             // val plainPassword = UUID.randomUUID().toString.replaceAll("-", "")
             val authInfo = passwordHasherRegistry.current.hash(signUp.password)
             for {
               avatar <- avatarService.retrieveURL(signUp.email)
-              _ <- userService.save(user.copy(avatarURL = avatar))
               _ <- authInfoRepository.add(loginInfo, authInfo)
               authenticator <- silhouette.env.authenticatorService.create(
                 loginInfo)
@@ -85,27 +82,18 @@ class SignUpController @Inject()(
                     Token(token = token,
                           expiresOn = authenticator.expirationDateTime))))
             } yield {
-              val url = routes.ApplicationController.index().absoluteURL()
-              mailerClient.send(Email(
-                subject = Messages("email.sign.up.subject"),
-                from = Messages("email.from"),
-                to = Seq(user.email),
-                bodyText = Some(views.txt.emails.signUp(user, url).body),
-                bodyHtml = Some(views.html.emails.signUp(user, url).body)
-              ))
               silhouette.env.eventBus.publish(SignUpEvent(user, request))
               silhouette.env.eventBus.publish(LoginEvent(user, request))
               result
             }
           case Some(_) =>
             /* user already exists! */
-            Future(Conflict(Json.toJson(Bad(message = "user already exists"))))
+            Future(Conflict(Json.toJson("user already exists")))
         }
       }
       .recoverTotal {
         case error =>
-          Future.successful(
-            BadRequest(Json.toJson(Bad(message = JsError.toJson(error)))))
+          Future.successful(BadRequest(Json.toJson(JsError.toJson(error))))
       }
   }
 }
