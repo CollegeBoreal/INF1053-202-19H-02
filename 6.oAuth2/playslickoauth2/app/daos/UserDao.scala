@@ -1,10 +1,15 @@
-package dao
+package daos
 
 import javax.inject.{Inject, Singleton}
+
+import com.mohiva.play.silhouette.api.LoginInfo
+import com.mohiva.play.silhouette.api.services.IdentityService
 import models.User
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
+import play.api.libs.json.Json
 import slick.jdbc.JdbcProfile
 import slick.lifted
+
 import scala.concurrent.{ExecutionContext, Future}
 
 trait UserComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
@@ -16,11 +21,8 @@ trait UserComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
     // scalastyle:off magic.number
     def user: Rep[Int] = column[Int]("user", O.PrimaryKey, O.AutoInc)
 
-    def number: Rep[String] =
-      column[String]("number", O.Length(45, varying = true))
-
-    def email: Rep[String] =
-      column[String]("email", O.Length(45, varying = true))
+    def key: Rep[String] =
+      column[String]("key", O.Length(45, varying = true))
 
     def active: Rep[Boolean] = column[Boolean]("active")
 
@@ -28,7 +30,7 @@ trait UserComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 
     // scalastyle:off method.name
     override def * : ProvenShape[User] =
-      (user ?, number, email, active, created) <> (User.tupled, User.unapply)
+      (user ?, key, active, created) <> (User.tupled, User.unapply)
     // scalastyle:on method.name
 
   }
@@ -39,6 +41,7 @@ trait UserComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 class UserDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
     implicit executionContext: ExecutionContext)
     extends UserComponent
+    with IdentityService[User]
     with HasDatabaseConfigProvider[JdbcProfile] {
 
   import profile.api._
@@ -46,5 +49,7 @@ class UserDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
   val users = lifted.TableQuery[UserTable]
 
   def getAll: Future[Seq[User]] = db.run(users.result)
+
+  override def retrieve(loginInfo: LoginInfo): Future[Option[User]] = ???
 
 }

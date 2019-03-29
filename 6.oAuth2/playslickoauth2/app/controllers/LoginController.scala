@@ -1,6 +1,6 @@
 package controllers
 
-import dao.LoginDao
+import daos.LoginDao
 import javax.inject.{Inject, Singleton}
 import models.Login
 import play.api.libs.json.{Format, Json}

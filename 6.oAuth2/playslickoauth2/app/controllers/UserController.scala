@@ -3,7 +3,7 @@ package controllers
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
-import dao.UserDao
+import daos.UserDao
 import javax.inject.{Inject, Singleton}
 import models.User
 import play.api.libs.json._

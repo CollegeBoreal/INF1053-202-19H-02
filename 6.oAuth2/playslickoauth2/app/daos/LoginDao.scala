@@ -1,4 +1,4 @@
-package dao
+package daos
 
 import javax.inject.{Inject, Singleton}
 import models.Login
@@ -16,16 +16,15 @@ trait LoginComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
   class LoginTable(tag: Tag) extends Table[Login](tag, "LOGINS") {
 
     // scalastyle:off magic.number
-    def providerId: Rep[String] =
-      column[String]("providerId", O.Length(45, varying = true))
+    def provider: Rep[Int] = column[Int]("provider")
 
-    def providerKey: Rep[String] =
-      column[String]("providerKey", O.Length(45, varying = true), O.PrimaryKey)
+    def key: Rep[String] =
+      column[String]("key", O.Length(45, varying = true), O.PrimaryKey)
     // scalastyle:on magic.number
 
     // scalastyle:off method.name
     override def * : ProvenShape[Login] =
-      (providerId, providerKey ?) <> (Login.tupled, Login.unapply)
+      (provider, key) <> (Login.tupled, Login.unapply)
     // scalastyle:on method.name
 
   }

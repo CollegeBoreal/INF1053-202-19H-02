@@ -1,7 +1,6 @@
 package models
 
 case class User(user: Option[Int],
-                providerKey: String,
-                number: String,
+                key: String,
                 active: Boolean,
                 created: java.sql.Timestamp)

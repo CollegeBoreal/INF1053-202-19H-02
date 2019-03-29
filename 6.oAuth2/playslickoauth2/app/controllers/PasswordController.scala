@@ -1,6 +1,6 @@
 package controllers
 
-import dao.PasswordDao
+import daos.PasswordDao
 import javax.inject.{Inject, Singleton}
 import models.Password
 import play.api.libs.json.{Format, Json}
