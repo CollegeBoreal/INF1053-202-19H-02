@@ -1,7 +1,11 @@
-name := "PlaySlickApp"
-description := "Example Play App set up to use Slick with MySQL and Evolutions"
-version := "1.0-SNAPSHOT"
 organization := "ca.collegeboreal"
+
+name := "PlaySlickOauth2"
+
+description := "Example Play App set up to use Slick with MySQL and Evolutions under Silhouette oAuth2 scheme"
+
+version := "1.0-SNAPSHOT"
+
 scalaVersion := "2.12.6"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala, SwaggerPlugin)
