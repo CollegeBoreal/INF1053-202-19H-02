@@ -20,6 +20,8 @@ scala> import slick.jdbc.MySQLProfile.api._
 import slick.jdbc.MySQLProfile.api._
 ```
 
+http://slick.lightbend.com/doc/3.3.0/database.html#using-typesafe-config
+
 ```
 scala> val db = Database.forConfig("slick.dbs.default.db")
 db: slick.jdbc.MySQLProfile.backend.Database = slick.jdbc.JdbcBackend$DatabaseDef@2e9a2acc
