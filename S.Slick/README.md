@@ -27,6 +27,14 @@ scala> val db = Database.forConfig("slick.dbs.default.db")
 db: slick.jdbc.MySQLProfile.backend.Database = slick.jdbc.JdbcBackend$DatabaseDef@2e9a2acc
 ```
 
+```
+scala> :paste
+import scala.concurrent.duration._
+import scala.concurrent.Await
+import scala.concurrent.ExecutionContext.Implicits.global
+```
+
+
 | Livre                                   | Lien                                            |
 |-----------------------------------------|-------------------------------------------------|
 | essential-slick-3.epub                  | [essential-slick-3.epub](https://github.com/underscoreio/books/blob/master/essential-slick/essential-slick-3.epub)
