@@ -31,7 +31,7 @@ db: slick.jdbc.MySQLProfile.backend.Database = slick.jdbc.JdbcBackend$DatabaseDe
 
 | Livre                                   | Lien                                            |
 |-----------------------------------------|-------------------------------------------------|
-| essential-slick-3.epub                  | [essential-slick-3.epub](https://github.com/underscoreio/books/blob/master/essential-slick/essential-slick-3.epub)
+| essential-slick                         | https://underscore.io/books/essential-slick/    |
 
 ## Framework Slick
 
