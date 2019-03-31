@@ -13,7 +13,7 @@
 $ sbt new CollegeBoreal/play-slick-mysql.g8 --name=<ID>
 ```
 
-## dans le projet, lancer le REPL (sbt console)
+## Dans le projet, lancer le REPL (sbt console)
 
 ```
 scala> val db = Database.forConfig("slick.dbs.default.db")
