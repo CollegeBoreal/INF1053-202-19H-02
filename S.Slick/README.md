@@ -1,19 +1,19 @@
 # Slick (ORM)
 
-## G8 Template
-
-```
-$ sbt new CollegeBoreal/play-slick-mysql.g8 --name=<ID>
-```
-
-## Lancer un container (MySQL ou Postgres)
+## Prerequis: Lancer un container (MySQL ou Postgres)
 
 * [MySQL](MYSQL.md)
 
 * [Postgres](POSTGRES.md)
 
 
-## Lancer le REPL
+## Creer un nouveau projet [G8 Template]
+
+```
+$ sbt new CollegeBoreal/play-slick-mysql.g8 --name=<ID>
+```
+
+## dans le projet, lancer le REPL (sbt console)
 
 ```
 scala> val db = Database.forConfig("slick.dbs.default.db")
