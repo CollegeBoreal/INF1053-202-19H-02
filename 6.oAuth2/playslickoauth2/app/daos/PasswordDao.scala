@@ -11,7 +11,9 @@ import slick.lifted
 
 import scala.concurrent.{ExecutionContext, Future}
 
-trait PasswordComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
+trait PasswordComponent {
+  self: HasDatabaseConfigProvider[JdbcProfile] =>
+
   import profile.api._
   import slick.lifted.ProvenShape
 
@@ -28,11 +30,13 @@ trait PasswordComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
     def hasher: Rep[String] = column[String]("hasher")
 
     def salt: Rep[Option[String]] = column[Option[String]]("salt")
+
     // scalastyle:on magic.number
 
     // scalastyle:off method.name
     override def * : ProvenShape[Password] =
       (key, active, password, hasher, salt) <> (Password.tupled, Password.unapply)
+
     // scalastyle:on method.name
 
   }
@@ -41,9 +45,9 @@ trait PasswordComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 
 @Singleton
 class PasswordDao @Inject()(
-    protected val dbConfigProvider: DatabaseConfigProvider,
-    loginDao: LoginDao)(implicit executionContext: ExecutionContext)
-    extends DelegableAuthInfoDAO[PasswordInfo]
+                             protected val dbConfigProvider: DatabaseConfigProvider,
+                             loginDao: LoginDao)(implicit executionContext: ExecutionContext)
+  extends DelegableAuthInfoDAO[PasswordInfo]
     with PasswordComponent
     with HasDatabaseConfigProvider[JdbcProfile] {
 
@@ -53,12 +57,11 @@ class PasswordDao @Inject()(
 
   def getAll(): Future[Seq[Password]] = db.run(passwords.result)
 
-  private def loginInfoQuery(loginInfo: LoginInfo): Query[loginDao.LoginTable,loginDao.LoginTable#TableElementType,Seq] = {
+  private def loginInfoQuery(loginInfo: LoginInfo): Query[loginDao.LoginTable, Login, Seq] =
     loginDao.logins.filter(a => a.provider === loginInfo.providerID.toInt && a.key === loginInfo.providerKey)
-  }
 
   override def find(loginInfo: LoginInfo): Future[Option[PasswordInfo]] =
-   for {
+    for {
       pwd <- db.run(passwords.filter(_.key === loginInfo.providerKey).result).map(_.headOption)
     } yield pwd match {
       case Some(y) => Some(PasswordInfo(y.password, y.hasher, y.salt))
@@ -68,9 +71,9 @@ class PasswordDao @Inject()(
                    authInfo: PasswordInfo): Future[PasswordInfo] = {
     val dt = new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis)
     db.run {
-      loginDao.logins.filter(x => x.provider === loginInfo.providerID.toInt && x.key === loginInfo.providerKey).result >>
-        (passwords += Password(loginInfo.providerKey,dt,authInfo.hasher, authInfo.password, authInfo.salt)) >>
-      passwords.filter(_.key === loginInfo.providerKey).result
+      loginInfoQuery(loginInfo).result >>
+        (passwords += Password(loginInfo.providerKey, dt, authInfo.hasher, authInfo.password, authInfo.salt)) >>
+        passwords.filter(_.key === loginInfo.providerKey).result
     }.map(_ => authInfo)
   }
 
@@ -78,7 +81,17 @@ class PasswordDao @Inject()(
                       authInfo: PasswordInfo): Future[PasswordInfo] = ???
 
   override def save(loginInfo: LoginInfo,
-                    authInfo: PasswordInfo): Future[PasswordInfo] = ???
+                    authInfo: PasswordInfo): Future[PasswordInfo] = {
+    val dbLoginInfo = (loginInfoQuery(loginInfo). joinLeft passwords on ( _.key === _.key)).result.map(_.head)
+
+  val action = dbLoginInfo.flatMap {
+    case (loginInfo, Some(authInfo)) => PasswordInfos.filter(_.loginInfoId === authInfo.loginInfoId).map(a => (a.hasher, a.password, a.salt)).update((authInfo.hasher, authInfo.password, authInfo.salt))
+    case (loginInfo, None) => PasswordInfos += EntityPasswordInfo(authInfo.hasher, authInfo.password, authInfo.salt, loginInfo.id.get)
+  }
+  db.run {
+    action
+  }.map(_ => authInfo)
+  }
 
   override def remove(loginInfo: LoginInfo): Future[Unit] = ???
 }
