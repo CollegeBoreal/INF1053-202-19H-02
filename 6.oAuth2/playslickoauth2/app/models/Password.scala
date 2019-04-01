@@ -1,6 +1,7 @@
 package models
 
-case class Password(providerId: Option[String],
-                    hasher: String,
+case class Password(key: String,
+                    active: java.sql.Timestamp,
                     password: String,
-                    salt: String)
+                    hasher: String,
+                    salt: Option[String] = None)
