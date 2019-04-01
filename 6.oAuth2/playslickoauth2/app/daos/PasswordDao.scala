@@ -55,43 +55,56 @@ class PasswordDao @Inject()(
 
   val passwords = lifted.TableQuery[PasswordTable]
 
-  def getAll(): Future[Seq[Password]] = db.run(passwords.result)
+  def getAll: Future[Seq[Password]] = db.run(passwords.result)
 
-  private def loginInfoQuery(loginInfo: LoginInfo): Query[loginDao.LoginTable, Login, Seq] =
-    loginDao.logins.filter(a => a.provider === loginInfo.providerID.toInt && a.key === loginInfo.providerKey)
-
-  override def find(loginInfo: LoginInfo): Future[Option[PasswordInfo]] =
+  override def find(loginInfo: LoginInfo): Future[Option[PasswordInfo]] = db.run {
     for {
-      pwd <- db.run(passwords.filter(_.key === loginInfo.providerKey).result).map(_.headOption)
-    } yield pwd match {
-      case Some(y) => Some(PasswordInfo(y.password, y.hasher, y.salt))
-    }
+      Some(fields) <- passwords.filter(_.key === loginInfo.providerKey).result.map(_.headOption)
+    } yield Some(PasswordInfo(fields.password, fields.hasher, fields.salt))
+  }
 
   override def add(loginInfo: LoginInfo,
                    authInfo: PasswordInfo): Future[PasswordInfo] = {
-    val dt = new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis)
+    lazy val dt = new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis)
     db.run {
-      loginInfoQuery(loginInfo).result >>
+      loginQuery(loginInfo).result >>
         (passwords += Password(loginInfo.providerKey, dt, authInfo.hasher, authInfo.password, authInfo.salt)) >>
         passwords.filter(_.key === loginInfo.providerKey).result
     }.map(_ => authInfo)
   }
 
   override def update(loginInfo: LoginInfo,
-                      authInfo: PasswordInfo): Future[PasswordInfo] = ???
+                      authInfo: PasswordInfo): Future[PasswordInfo] = save(loginInfo, authInfo)
 
   override def save(loginInfo: LoginInfo,
                     authInfo: PasswordInfo): Future[PasswordInfo] = {
-    val dbLoginInfo = (loginInfoQuery(loginInfo). joinLeft passwords on ( _.key === _.key)).result.map(_.head)
-
-  val action = dbLoginInfo.flatMap {
-    case (loginInfo, Some(authInfo)) => PasswordInfos.filter(_.loginInfoId === authInfo.loginInfoId).map(a => (a.hasher, a.password, a.salt)).update((authInfo.hasher, authInfo.password, authInfo.salt))
-    case (loginInfo, None) => PasswordInfos += EntityPasswordInfo(authInfo.hasher, authInfo.password, authInfo.salt, loginInfo.id.get)
+    lazy val dt = new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis)
+    db.run {
+      for (cs <- joinAction(loginInfo).map(_.head)) yield
+        cs match {
+        case (_, Some(oldAuthInfo)) =>
+          passwords
+            .filter(_.key === oldAuthInfo.key)
+            .map(c => (c.hasher, c.password, c.salt))
+            .update((authInfo.hasher, authInfo.password, authInfo.salt))
+        case (_, None) =>
+          passwords +=
+            Password(loginInfo.providerKey, dt, authInfo.hasher, authInfo.password, authInfo.salt)
+      }
+    }.map(_ => authInfo)
   }
-  db.run {
-    action
-  }.map(_ => authInfo)
-  }
 
-  override def remove(loginInfo: LoginInfo): Future[Unit] = ???
+  override def remove(loginInfo: LoginInfo): Future[Unit] =
+    db.run {
+      for { (_, Some(oldAuthInfo)) <- joinAction(loginInfo).map(_.head) } yield
+        passwords.filter(_.key === oldAuthInfo.key).delete
+    }.map(_ => ())
+
+  private def loginQuery(loginInfo: LoginInfo): Query[loginDao.LoginTable, Login, Seq] =
+    loginDao.logins.filter( fields => fields.provider === loginInfo.providerID.toInt && fields.key === loginInfo.providerKey)
+
+
+  private def joinAction(loginInfo: LoginInfo): DBIO[Seq[(Login,Option[Password])]] =
+    (loginQuery(loginInfo) joinLeft passwords on (_.key === _.key)).result
+
 }
