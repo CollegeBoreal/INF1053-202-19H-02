@@ -40,7 +40,7 @@ import com.mohiva.play.silhouette.password.{
 import com.mohiva.play.silhouette.persistence.daos.DelegableAuthInfoDAO
 import com.mohiva.play.silhouette.persistence.repositories.DelegableAuthInfoRepository
 import daos.{AuthenticatorDao, PasswordDao, UserDao}
-import models.{Password, User}
+import models.User
 import models.auth.{
   CustomSecuredErrorHandler,
   CustomUnsecuredErrorHandler,

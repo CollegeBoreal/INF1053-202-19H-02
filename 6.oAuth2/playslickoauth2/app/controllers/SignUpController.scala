@@ -1,7 +1,5 @@
 package controllers
 
-import java.util.Calendar
-
 import javax.inject.Inject
 import com.mohiva.play.silhouette.api.repositories.AuthInfoRepository
 import com.mohiva.play.silhouette.api.services.AvatarService
@@ -61,11 +59,11 @@ class SignUpController @Inject()(
         userService.retrieve(loginInfo).flatMap {
           case None =>
             /* user not already exists */
-            val user = User(None,
-                            key = loginInfo.providerKey,
-                            active = true,
-                            created = java.sql.Timestamp.valueOf(
-                              Calendar.getInstance().getTime.toString))
+            val user = User(
+              None,
+              key = loginInfo.providerKey,
+              active = true,
+              created = java.sql.Timestamp.valueOf(java.time.LocalDateTime.now))
 
             // val plainPassword = UUID.randomUUID().toString.replaceAll("-", "")
             val authInfo = passwordHasherRegistry.current.hash(signUp.password)

@@ -18,6 +18,11 @@
 ###
 GET    /api/user/all           controllers.UserController.getAll
 
+POST        /api/auth/register                                              controllers.SignUpController.signUp
+
+GET         /swagger.json                                                   controllers.ApiHelpController.getResources
+
+
 ### NoDocs ###
 GET     /api-docs                   controllers.Default.redirect(to="/assets/lib/swagger-ui/index.html?url=/assets/swagger.json")
 
