@@ -119,10 +119,13 @@ class PasswordDao @Inject()(
       }
       .map(_ => ())
 
+  /*
+  Credentials Provider is always at 1
+   */
   private def loginQuery(
       loginInfo: LoginInfo): Query[loginDao.LoginTable, Login, Seq] =
     loginDao.logins.filter(fields =>
-      /*fields.provider === loginInfo.providerID.toInt && */ fields.key === loginInfo.providerKey)
+      fields.provider === 1 && fields.key === loginInfo.providerKey)
 
   private def joinAction(
       loginInfo: LoginInfo): DBIO[Seq[(Login, Option[Password])]] =

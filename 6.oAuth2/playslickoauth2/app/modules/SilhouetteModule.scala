@@ -70,7 +70,7 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
     // @provides provideEnvironment [Implementation]
     bind[IdentityService[User]].to[UserDao]
     // @provides provideAuthenticatorService
-    bind[AuthenticatorRepository[JWTAuthenticator]].to[AuthenticatorDao]
+//    bind[AuthenticatorRepository[JWTAuthenticator]].to[AuthenticatorDao]
     // @provides provideAuthInfoRepository
     bind[DelegableAuthInfoDAO[PasswordInfo]].to[PasswordDao]
   }

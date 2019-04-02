@@ -5,4 +5,5 @@ case class Authenticator(provider: Int,
                          lastUsed: java.sql.Timestamp,
                          expiration: java.sql.Timestamp,
                          idleTimeOut: Int,
-                         duration: Int)
+                         duration: Int,
+                         id: String)

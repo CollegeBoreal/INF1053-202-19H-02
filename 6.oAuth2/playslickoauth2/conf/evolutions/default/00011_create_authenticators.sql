@@ -12,18 +12,9 @@ CREATE TABLE IF NOT EXISTS `AUTHENTICATORS` (
   `expiration` DATETIME NULL,
   `idleTimeOut` INT NULL,
   `duration` INT NULL,
+  `id` VARCHAR(300) NOT NULL,
   INDEX `key_idx` (`key` ASC),
-  PRIMARY KEY (`provider`, `key`),
-  CONSTRAINT `constraint_authenticator_provider`
-    FOREIGN KEY (`provider`)
-    REFERENCES `LOGINS` (`provider`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `constraint_authenticator_key`
-    FOREIGN KEY (`key`)
-    REFERENCES `LOGINS` (`key`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+  PRIMARY KEY (`provider`, `key`)
 );
 
 # --- !Downs
