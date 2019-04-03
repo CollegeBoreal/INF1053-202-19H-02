@@ -70,7 +70,7 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
     // @provides provideEnvironment [Implementation]
     bind[IdentityService[User]].to[UserDao]
     // @provides provideAuthenticatorService
-//    bind[AuthenticatorRepository[JWTAuthenticator]].to[AuthenticatorDao]
+    bind[AuthenticatorRepository[JWTAuthenticator]].to[AuthenticatorDao]
     // @provides provideAuthInfoRepository
     bind[DelegableAuthInfoDAO[PasswordInfo]].to[PasswordDao]
   }
@@ -117,6 +117,13 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
 
   /**
     * Provides the authenticator service.
+    *
+    * Note:  If play.http.secret.key is not set in application.conf
+    *        the Authenticator Service may throw :
+    *        com.nimbusds.jose.KeyLengthException: The secret length must be at least 256 bits
+    *        This works: scala> "01234567890123456789012345678901".getBytes.size
+    *        A minimum of 32 characters is required to generate a token
+    *
     *
     * @param crypter              The crypter implementation.
     * @param idGenerator          The ID generator implementation.

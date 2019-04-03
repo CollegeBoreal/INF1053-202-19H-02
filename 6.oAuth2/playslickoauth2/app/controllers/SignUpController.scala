@@ -1,5 +1,7 @@
 package controllers
 
+import java.util.UUID
+
 import javax.inject.Inject
 import com.mohiva.play.silhouette.api.repositories.AuthInfoRepository
 import com.mohiva.play.silhouette.api.services.AvatarService
@@ -52,6 +54,8 @@ class SignUpController @Inject()(
     )
   )
   def signUp: Action[JsValue] = Action.async(parse.json) { implicit request =>
+    val authenticatorRepository = silhouette.env.authenticatorService
+
     request.body
       .validate[SignUp]
       .map { signUp =>
@@ -65,15 +69,14 @@ class SignUpController @Inject()(
               active = true,
               created = java.sql.Timestamp.valueOf(java.time.LocalDateTime.now))
 
-            // val plainPassword = UUID.randomUUID().toString.replaceAll("-", "")
+//            val token = UUID.randomUUID().toString.replaceAll("-", "")
             val authInfo = passwordHasherRegistry.current.hash(signUp.password)
             for {
               avatar <- avatarService.retrieveURL(signUp.email)
               _ <- authInfoRepository.add(loginInfo, authInfo)
-              authenticator <- silhouette.env.authenticatorService.create(
-                loginInfo)
-              token <- silhouette.env.authenticatorService.init(authenticator)
-              result <- silhouette.env.authenticatorService.embed(
+              authenticator <- authenticatorRepository.create(loginInfo)
+              token <- authenticatorRepository.init(authenticator)
+              result <- authenticatorRepository.embed(
                 token,
                 Ok(
                   Json.toJson(
