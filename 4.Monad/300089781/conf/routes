@@ -31,11 +31,9 @@ GET     /api/product/all            controllers.ProductController.getAll
 ###
 GET     /api/band/all               controllers.BandController.getAll
 
-###
-GET     /api/member/all             controllers.MemberController.getAll
 
-###
-GET     /api/artist/all             controllers.ArtistController.getAll
+
+
 
 ###
 # summary: Get a list of all customers

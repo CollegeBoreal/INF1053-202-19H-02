@@ -15,8 +15,8 @@ import scala.concurrent.ExecutionContext
 
 @Singleton()
 class BandController @Inject()(cc: ControllerComponents, bandsDao: BandsDao)(
-  implicit ec: ExecutionContext)
-  extends AbstractController(cc) {
+    implicit ec: ExecutionContext)
+    extends AbstractController(cc) {
 
   implicit val fmt: Format[Band] = Json.format[Band]
 

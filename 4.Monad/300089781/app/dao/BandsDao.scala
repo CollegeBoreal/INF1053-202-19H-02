@@ -35,8 +35,8 @@ trait BandsComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 
 @Singleton()
 class BandsDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
-  implicit executionContext: ExecutionContext)
-  extends BandsComponent
+    implicit executionContext: ExecutionContext)
+    extends BandsComponent
     with HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
 
