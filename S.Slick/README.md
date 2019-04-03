@@ -1,56 +1,40 @@
 # Slick (ORM)
 
-## G8 Template
+## Prerequis: Lancer un container (MySQL ou Postgres)
+
+* [MySQL](MYSQL.md)
+
+* [Postgres](POSTGRES.md)
+
+
+## Creer un nouveau projet [G8 Template]
 
 ```
-$ sbt new excellalabs/play-slick-postgres.g8 --name=<ID>
+$ sbt new CollegeBoreal/play-slick-mysql.g8 --name=<ID>
 ```
 
-## PostgreSQL
+## Dans le projet, lancer le REPL (sbt console)
 
 ```
-$ docker run --name some-postgres --env POSTGRES_PASSWORD=test --publish 5432:5432 --detach postgres
+scala> import slick.jdbc.MySQLProfile.api._
+import slick.jdbc.MySQLProfile.api._
 ```
 
-## PosgreSQL CLI
-
-https://www.a2hosting.ca/kb/developer-corner/postgresql/managing-postgresql-databases-and-users-from-the-command-line
-
-* Rentrer dans le container
+http://slick.lightbend.com/doc/3.3.0/database.html#using-typesafe-config
 
 ```
-$ docker exec --interactive --tty some-postgres bash
+scala> val db = Database.forConfig("slick.dbs.default.db")
+db: slick.jdbc.MySQLProfile.backend.Database = slick.jdbc.JdbcBackend$DatabaseDef@2e9a2acc
 ```
 
-* Changer d'utilisateur de root a postgres
-
-```
-root@c2da6ee122d8:/# su - postgres
-```
-
-* creer la db avec les commandes shell (createdb de postgres)
-
-```
-$ postgres@c2da6ee122d8:~$ createdb -O postgres playdb
-```
-
-* rentrer dans le CLI postgres
-
-```
-postgres@c2da6ee122d8:~$ psql
-```
-
-* dans le PSQL CLI creer les permissions
-
-```
-postgres=# GRANT ALL ON DATABASE playdb TO postgres;
-```
-
-
-## Framework Slick
-
-https://www.playframework.com/documentation/2.6.x/PlaySlick
+## Suivre la documentation du livre
 
 | Livre                                   | Lien                                            |
 |-----------------------------------------|-------------------------------------------------|
-| essential-slick-3.epub                  | [essential-slick-3.epub](https://github.com/underscoreio/books/blob/master/essential-slick/essential-slick-3.epub)
+| essential-slick                         | https://underscore.io/books/essential-slick/    |
+
+## Framework Slick
+
+http://slick.lightbend.com/
+
+https://www.playframework.com/documentation/2.6.x/PlaySlick

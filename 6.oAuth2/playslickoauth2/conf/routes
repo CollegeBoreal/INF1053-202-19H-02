@@ -1,0 +1,34 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+# GET     /                           controllers.HomeController.index
+
+###
+# summary: Get a list of all users
+# responses:
+#    200:
+#      description: Successfully listed all users
+#      schema:
+#        type: array
+#        items:
+#            $ref: '#/definitions/models.User'
+###
+GET    /api/user/all           controllers.UserController.getAll
+
+POST        /api/auth/register                                              controllers.SignUpController.signUp
+
+GET         /swagger.json                                                   controllers.ApiHelpController.getResources
+
+
+### NoDocs ###
+GET     /api-docs                   controllers.Default.redirect(to="/assets/lib/swagger-ui/index.html?url=/assets/swagger.json")
+
+### NoDocs ###
+GET     /api-docs/*file             controllers.Assets.at(path:String="/public/lib/swagger-ui", file:String)
+
+# Map static resources from the /public folder to the /assets URL path
+### NoDocs ###
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
