@@ -1,9 +1,7 @@
 package models
 
 case class Message(message: String)
-case class Customer(customer: Option[Int],
-                    name: String,
-                    phone: String)
+case class Customer(customer: Option[Int], name: String, phone: String)
 
 case class Product(id: Option[Int],
                    sku: String,

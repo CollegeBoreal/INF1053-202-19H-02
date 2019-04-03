@@ -16,7 +16,6 @@ trait CustomersComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
     def phone: Rep[String] =
       column[String]("phone", O.Length(511, varying = true))
 
-
     override def * : ProvenShape[Customer] =
       (customer.?, name, phone) <> (Customer.tupled, Customer.unapply)
 
@@ -25,9 +24,9 @@ trait CustomersComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 
 @Singleton()
 class CustomersDao @Inject()(
-                             protected val dbConfigProvider: DatabaseConfigProvider)(
-                             implicit executionContext: ExecutionContext)
-  extends CustomersComponent
+    protected val dbConfigProvider: DatabaseConfigProvider)(
+    implicit executionContext: ExecutionContext)
+    extends CustomersComponent
     with HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
 
