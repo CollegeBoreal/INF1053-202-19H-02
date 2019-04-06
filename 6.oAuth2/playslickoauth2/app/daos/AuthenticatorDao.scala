@@ -76,13 +76,15 @@ class AuthenticatorDao @Inject()(
                              new org.joda.time.DateTime(x.lastUsed),
                              new org.joda.time.DateTime(x.expiration),
                              None))
+        case _ => None
       }
   }
 
   override def add(authenticator: JWTAuthenticator): Future[JWTAuthenticator] =
     db.run {
-        lazy val dt = new java.sql.Timestamp(
-          java.util.Calendar.getInstance().getTimeInMillis)
+        lazy val current = java.util.Calendar.getInstance().getTimeInMillis
+        lazy val lastUsed = new java.sql.Timestamp(current)
+        lazy val expiration = new java.sql.Timestamp(current + (12 * 3600000))
         /*
                   authenticators
                     .filter(fields => fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
@@ -91,28 +93,22 @@ class AuthenticatorDao @Inject()(
          */
         //            case (_, None) =>
         authenticators +=
-          Authenticator(1,
-                        authenticator.loginInfo.providerKey,
-                        dt,
-                        dt,
-                        0,
-                        32400,
-                        authenticator.id)
+          Authenticator(1, authenticator.loginInfo.providerKey, lastUsed, expiration, 0, 32400, authenticator.id)
       }
       .map(_ => authenticator)
 
   override def update(
       authenticator: JWTAuthenticator): Future[JWTAuthenticator] =
     db.run {
-        authenticators
+      lazy val current = java.util.Calendar.getInstance().getTimeInMillis
+      lazy val lastUsed = new java.sql.Timestamp(current)
+      lazy val expiration = new java.sql.Timestamp(current + (12 * 3600000))
+
+      authenticators
           .filter(fields =>
             fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
           .map(fields => (fields.lastUsed, fields.expiration))
-          .update(
-            (new java.sql.Timestamp(authenticator.lastUsedDateTime.getMillis),
-             new java.sql.Timestamp(
-               authenticator.expirationDateTime.getMillis)))
-
+          .update((lastUsed,expiration))
       }
       .map(_ => authenticator)
 

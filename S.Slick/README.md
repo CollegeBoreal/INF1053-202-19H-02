@@ -35,4 +35,6 @@ db: slick.jdbc.MySQLProfile.backend.Database = slick.jdbc.JdbcBackend$DatabaseDe
 
 ## Framework Slick
 
+http://slick.lightbend.com/
+
 https://www.playframework.com/documentation/2.6.x/PlaySlick
