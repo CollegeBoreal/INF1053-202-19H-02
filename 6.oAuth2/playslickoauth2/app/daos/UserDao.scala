@@ -54,4 +54,6 @@ class UserDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
     db.run(users.filter(_.key === loginInfo.providerKey).result)
       .map(_.headOption)
 
+  def add(user: User): Future[Int] = db.run(users += user)
+
 }

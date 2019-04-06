@@ -73,6 +73,7 @@ class SignUpController @Inject()(
             val authInfo = passwordHasherRegistry.current.hash(signUp.password)
             for {
               avatar <- avatarService.retrieveURL(signUp.email)
+              _ <- userService.add(user)
               _ <- authInfoRepository.add(loginInfo, authInfo)
               authenticator <- authenticatorRepository.create(loginInfo)
               token <- authenticatorRepository.init(authenticator)
