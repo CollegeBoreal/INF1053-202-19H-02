@@ -8,7 +8,7 @@ import com.mohiva.play.silhouette.api.services.AvatarService
 import com.mohiva.play.silhouette.api.util.{Clock, PasswordHasherRegistry}
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
-import daos.UserDao
+import daos.UserDAO
 import io.swagger.annotations.{
   Api,
   ApiImplicitParam,
@@ -27,7 +27,7 @@ import scala.concurrent.{ExecutionContext, Future}
 @Api(value = "Registration")
 class SignUpController @Inject()(
     components: ControllerComponents,
-    userService: UserDao,
+    userService: UserDAO,
     configuration: Configuration,
     silhouette: Silhouette[DefaultEnv],
     clock: Clock,
@@ -73,8 +73,8 @@ class SignUpController @Inject()(
             val authInfo = passwordHasherRegistry.current.hash(signUp.password)
             for {
               avatar <- avatarService.retrieveURL(signUp.email)
-              _ <- userService.add(user)
               _ <- authInfoRepository.add(loginInfo, authInfo)
+              _ <- userService.add(user)
               authenticator <- authenticatorRepository.create(loginInfo)
               token <- authenticatorRepository.init(authenticator)
               result <- authenticatorRepository.embed(

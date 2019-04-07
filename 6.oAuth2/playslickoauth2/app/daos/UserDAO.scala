@@ -38,7 +38,7 @@ trait UserComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 }
 
 @Singleton
-class UserDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
+class UserDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
     implicit executionContext: ExecutionContext)
     extends UserComponent
     with IdentityService[User]

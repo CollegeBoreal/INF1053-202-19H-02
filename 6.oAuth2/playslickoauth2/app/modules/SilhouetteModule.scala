@@ -39,7 +39,7 @@ import com.mohiva.play.silhouette.password.{
 }
 import com.mohiva.play.silhouette.persistence.daos.DelegableAuthInfoDAO
 import com.mohiva.play.silhouette.persistence.repositories.DelegableAuthInfoRepository
-import daos.{AuthenticatorDao, PasswordDao, UserDao}
+import daos.{AuthenticatorDao, PasswordDao, UserDAO}
 import models.User
 import models.auth.{
   CustomSecuredErrorHandler,
@@ -68,7 +68,7 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
     // set your own Environment [Type]
     bind[Silhouette[DefaultEnv]].to[SilhouetteProvider[DefaultEnv]]
     // @provides provideEnvironment [Implementation]
-    bind[IdentityService[User]].to[UserDao]
+    bind[IdentityService[User]].to[UserDAO]
     // @provides provideAuthenticatorService
     bind[AuthenticatorRepository[JWTAuthenticator]].to[AuthenticatorDao]
     // @provides provideAuthInfoRepository
@@ -94,7 +94,7 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
     */
   @Provides
   def provideEnvironment(
-      userService: UserDao,
+      userService: UserDAO,
       @Named("authenticator-service")
       authenticatorService: AuthenticatorService[JWTAuthenticator],
       eventBus: EventBus): Environment[DefaultEnv] =

@@ -3,7 +3,7 @@ package controllers
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
-import daos.UserDao
+import daos.UserDAO
 import javax.inject.{Inject, Singleton}
 import models.User
 import play.api.libs.json._
@@ -17,7 +17,7 @@ import play.api.mvc.{
 import scala.concurrent.ExecutionContext
 
 @Singleton()
-class UserController @Inject()(cc: ControllerComponents, userDao: UserDao)(
+class UserController @Inject()(cc: ControllerComponents, userDao: UserDAO)(
     implicit ec: ExecutionContext)
     extends AbstractController(cc) {
 
