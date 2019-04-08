@@ -66,7 +66,7 @@ class CredentialAuthController @Inject()(
       val credentials = Credentials(request.body.email, request.body.password)
       val res = for {
         loginInfo <- credentialsProvider.authenticate(credentials)
-        authenticator <- authenticatorRepository.create(loginInfo)
+        Some(authenticator) <- authenticatorRepository.retrieve //.create(loginInfo)
         token <- authenticatorRepository.init(authenticator)
         t <- userService.retrieve(loginInfo)
       } yield {

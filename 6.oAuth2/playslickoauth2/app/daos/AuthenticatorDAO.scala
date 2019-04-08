@@ -1,5 +1,8 @@
 package daos
 
+import java.sql.Timestamp
+import java.time.LocalDate
+
 import com.mohiva.play.silhouette.api.LoginInfo
 import javax.inject.{Inject, Singleton}
 import com.mohiva.play.silhouette.api.repositories.AuthenticatorRepository
@@ -21,14 +24,16 @@ trait AuthenticatorComponent {
   class AuthenticatorTable(tag: Tag)
       extends Table[Authenticator](tag, "AUTHENTICATORS") {
 
+
+
     // scalastyle:off magic.number
     def provider: Rep[Int] = column[Int]("provider", O.PrimaryKey)
 
     def key: Rep[String] =
       column[String]("key", O.Length(45, varying = true), O.PrimaryKey)
 
-    def lastUsed: Rep[java.sql.Timestamp] =
-      column[java.sql.Timestamp]("lastUsed")
+    def lastUsed: Rep[java.time.LocalDateTime] =
+      column[java.time.LocalDateTime]("lastUsed")
 
     def expiration: Rep[java.sql.Timestamp] =
       column[java.sql.Timestamp]("expiration")
@@ -80,7 +85,13 @@ class AuthenticatorDao @Inject()(
       }
   }
 
-  override def add(authenticator: JWTAuthenticator): Future[JWTAuthenticator] =
+  override def add(
+      authenticator: JWTAuthenticator): Future[JWTAuthenticator] = {
+    val exists =
+      authenticators
+        .filter(fields =>
+          fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
+        .exists
     db.run {
         lazy val current = java.util.Calendar.getInstance().getTimeInMillis
         lazy val lastUsed = new java.sql.Timestamp(current)
@@ -102,6 +113,7 @@ class AuthenticatorDao @Inject()(
                         authenticator.id)
       }
       .map(_ => authenticator)
+  }
 
   override def update(
       authenticator: JWTAuthenticator): Future[JWTAuthenticator] =
