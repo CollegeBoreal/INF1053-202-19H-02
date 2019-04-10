@@ -31,8 +31,8 @@ GET     /api/product/all            controllers.ProductController.getAll
 ###
 GET     /api/band/all               controllers.BandController.getAll
 
-
-
+##
+GET     /api/profile/all            controllers.ProfileController.getAll
 
 
 ###
