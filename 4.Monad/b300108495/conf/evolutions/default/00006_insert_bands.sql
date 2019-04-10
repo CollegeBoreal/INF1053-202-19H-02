@@ -2,5 +2,5 @@
 
 # --- !Ups
 
-INSERT INTO BANDS, name, description)
+INSERT INTO BANDS ( band, name, description)
 VALUES  ('2','del','cool') ;

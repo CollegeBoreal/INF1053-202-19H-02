@@ -43,4 +43,5 @@ class BandsDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   val bands = TableQuery[BandTable]
 
   def getAll: Future[Seq[Band]] = db.run(bands.result)
+  def add(band: Band): Future[Int] = db.run(bands += band)
 }

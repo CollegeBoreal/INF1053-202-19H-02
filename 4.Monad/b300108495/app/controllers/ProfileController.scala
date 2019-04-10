@@ -14,16 +14,13 @@ import play.api.mvc.{
 import scala.concurrent.ExecutionContext
 
 @Singleton()
-class BandController @Inject()(cc: ControllerComponents, bandsDao: BandsDao)(
-    implicit ec: ExecutionContext)
-    extends AbstractController(cc) {
+class ProfileController @Inject()(cc: ControllerComponents, profileDao: ProfileDao)(
+  implicit ec: ExecutionContext)
+  extends AbstractController(cc) {
 
-  implicit val fmt: Format[Band] = Json.format[Band]
+  implicit val fmt: Format[Profile] = Json.format[Profile]
 
   def getAll: Action[AnyContent] = Action.async { implicit request =>
-    for { bands <- bandsDao.getAll } yield Ok(Json.toJson(bands))
-  }
-  def add(band: Band) = Action.async { implicit request =>
-    bandsDao.add(band)
+    for { profile <- profileDao.getAll } yield Ok(Json.toJson(profile))
   }
 }
