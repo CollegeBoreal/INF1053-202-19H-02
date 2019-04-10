@@ -1,14 +1,13 @@
-
 package dao
 
 import javax.inject.{Inject, Singleton}
-import models.Band
+import models.{Band, Profile}
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
 
-trait  ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
+trait ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
   import profile.api._
   import slick.lifted.ProvenShape
 
@@ -34,20 +33,21 @@ trait  ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 
     // scalastyle:off method.name
     override def * : ProvenShape[Profile] =
-      (profile.?, firstname, lastname) <> (Profile.tupled, Profile.unapply)
+      (profile, firstname, lastname, address, street, city, state, zip) <> (Profile.tupled, Profile.unapply)
     // scalastyle: on method.name
   }
 }
 
 @Singleton()
-class BandsDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
-  implicit executionContext: ExecutionContext)
-  extends BandsComponent
+class ProfileDao @Inject()(
+    protected val dbConfigProvider: DatabaseConfigProvider)(
+    implicit executionContext: ExecutionContext)
+    extends ProfileEditorComponent
     with HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
 
-  val bands = TableQuery[BandTable]
+  val profiles = TableQuery[ProfileTable]
 
-  def getAll: Future[Seq[Band]] = db.run(bands.result)
-  def add(band: Band): Future[Int] = db.run(bands += band)
+  def getAll: Future[Seq[Profile]] = db.run(profiles.result)
+  def add(profile: Profile): Future[Int] = db.run(profiles += profile)
 }

@@ -1,2 +1,2 @@
-INSERT INTO PROFILE (firstname, lastname)
-VALUES  ('Safaa', 'Zaoui') ;
+INSERT INTO PROFILE ( profile, firstname, lastname)
+VALUES  (1, 'Safaa', 'Zaoui') ;

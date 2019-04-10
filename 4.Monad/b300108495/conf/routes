@@ -42,6 +42,7 @@ GET     /api/members/all            controllers.MemberController.getAll
 
 GET     /api/bands/all            controllers.BandController.getAll
 GET     /api/profile/all            controllers.ProfileController.getAll
+POST   /api/profile/create               controllers.ProfileController.CreateProfile
 
 ### NoDocs ###
 GET     /api-docs                   controllers.Default.redirect(to="/assets/lib/swagger-ui/index.html?url=/assets/swagger.json")

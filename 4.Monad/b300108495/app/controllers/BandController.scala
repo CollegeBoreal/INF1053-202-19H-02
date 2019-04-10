@@ -23,7 +23,5 @@ class BandController @Inject()(cc: ControllerComponents, bandsDao: BandsDao)(
   def getAll: Action[AnyContent] = Action.async { implicit request =>
     for { bands <- bandsDao.getAll } yield Ok(Json.toJson(bands))
   }
-  def add(band: Band) = Action.async { implicit request =>
-    bandsDao.add(band)
-  }
+
 }
