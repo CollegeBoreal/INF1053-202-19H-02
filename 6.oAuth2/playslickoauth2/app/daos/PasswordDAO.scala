@@ -64,7 +64,7 @@ class PasswordDao @Inject()(
           .filter(_.key === loginInfo.providerKey)
           .result
           .map(_.headOption)
-      } yield Some(PasswordInfo(fields.secret, fields.hasher, fields.salt))
+      } yield Some(PasswordInfo(fields.hasher, fields.secret, fields.salt))
     }
 
   override def add(loginInfo: LoginInfo,

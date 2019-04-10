@@ -1,5 +1,8 @@
 package daos
 
+import java.sql.Timestamp
+import java.time.LocalDate
+
 import com.mohiva.play.silhouette.api.LoginInfo
 import javax.inject.{Inject, Singleton}
 import com.mohiva.play.silhouette.api.repositories.AuthenticatorRepository
@@ -21,14 +24,16 @@ trait AuthenticatorComponent {
   class AuthenticatorTable(tag: Tag)
       extends Table[Authenticator](tag, "AUTHENTICATORS") {
 
+
+
     // scalastyle:off magic.number
     def provider: Rep[Int] = column[Int]("provider", O.PrimaryKey)
 
     def key: Rep[String] =
       column[String]("key", O.Length(45, varying = true), O.PrimaryKey)
 
-    def lastUsed: Rep[java.sql.Timestamp] =
-      column[java.sql.Timestamp]("lastUsed")
+    def lastUsed: Rep[java.time.LocalDateTime] =
+      column[java.time.LocalDateTime]("lastUsed")
 
     def expiration: Rep[java.sql.Timestamp] =
       column[java.sql.Timestamp]("expiration")
@@ -76,13 +81,21 @@ class AuthenticatorDao @Inject()(
                              new org.joda.time.DateTime(x.lastUsed),
                              new org.joda.time.DateTime(x.expiration),
                              None))
+//        case _ => None
       }
   }
 
-  override def add(authenticator: JWTAuthenticator): Future[JWTAuthenticator] =
+  override def add(
+      authenticator: JWTAuthenticator): Future[JWTAuthenticator] = {
+    val exists =
+      authenticators
+        .filter(fields =>
+          fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
+        .exists
     db.run {
-        lazy val dt = new java.sql.Timestamp(
-          java.util.Calendar.getInstance().getTimeInMillis)
+        lazy val current = java.util.Calendar.getInstance().getTimeInMillis
+        lazy val lastUsed = new java.sql.Timestamp(current)
+        lazy val expiration = new java.sql.Timestamp(current + (12 * 3600000))
         /*
                   authenticators
                     .filter(fields => fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
@@ -93,26 +106,27 @@ class AuthenticatorDao @Inject()(
         authenticators +=
           Authenticator(1,
                         authenticator.loginInfo.providerKey,
-                        dt,
-                        dt,
+                        lastUsed,
+                        expiration,
                         0,
                         32400,
                         authenticator.id)
       }
       .map(_ => authenticator)
+  }
 
   override def update(
       authenticator: JWTAuthenticator): Future[JWTAuthenticator] =
     db.run {
+        lazy val current = java.util.Calendar.getInstance().getTimeInMillis
+        lazy val lastUsed = new java.sql.Timestamp(current)
+        lazy val expiration = new java.sql.Timestamp(current + (12 * 3600000))
+
         authenticators
           .filter(fields =>
             fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
           .map(fields => (fields.lastUsed, fields.expiration))
-          .update(
-            (new java.sql.Timestamp(authenticator.lastUsedDateTime.getMillis),
-             new java.sql.Timestamp(
-               authenticator.expirationDateTime.getMillis)))
-
+          .update((lastUsed, expiration))
       }
       .map(_ => authenticator)
 

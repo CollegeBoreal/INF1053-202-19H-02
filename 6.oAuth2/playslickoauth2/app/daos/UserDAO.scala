@@ -38,7 +38,7 @@ trait UserComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 }
 
 @Singleton
-class UserDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
+class UserDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
     implicit executionContext: ExecutionContext)
     extends UserComponent
     with IdentityService[User]
@@ -53,5 +53,7 @@ class UserDao @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
   override def retrieve(loginInfo: LoginInfo): Future[Option[User]] =
     db.run(users.filter(_.key === loginInfo.providerKey).result)
       .map(_.headOption)
+
+  def add(user: User): Future[Int] = db.run(users += user)
 
 }

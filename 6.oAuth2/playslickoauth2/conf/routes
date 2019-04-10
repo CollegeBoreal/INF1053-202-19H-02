@@ -20,6 +20,9 @@ GET    /api/user/all           controllers.UserController.getAll
 
 POST        /api/auth/register                                              controllers.SignUpController.signUp
 
+POST        /api/auth/login                                                 controllers.CredentialAuthController.authenticate
+
+
 GET         /swagger.json                                                   controllers.ApiHelpController.getResources
 
 
