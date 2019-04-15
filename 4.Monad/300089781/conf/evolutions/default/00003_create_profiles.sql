@@ -2,7 +2,7 @@
 
 # --- !Ups
 
-CREATE TABLE profile (
+CREATE TABLE PROFILES (
   `profile` INT NOT NULL AUTO_INCREMENT COMMENT '	',
   `name` VARCHAR(45) NULL,
   `lastname` VARCHAR(45) NULL,
@@ -17,4 +17,4 @@ CREATE TABLE profile (
 
 # --- !Downs
 
-DROP TABLE profile;
+DROP TABLE PROFILES;

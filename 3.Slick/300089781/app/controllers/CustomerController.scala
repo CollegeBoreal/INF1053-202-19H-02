@@ -16,6 +16,6 @@ class CustomerController @Inject()(cc: ControllerComponents)
   implicit val fmt: Format[Customer] = Json.format[Customer]
 
   def getAll: Action[AnyContent] = Action {
-    Ok(Json.toJson(Customer(Some(1), "Amelie Dubois")))
+    Ok(Json.toJson(Customer(Some(1), "Amelie Dubois", phone = "4388888888")))
   }
 }

@@ -1,4 +1,4 @@
-2019-03-20 11:01:36,559 [DEBUG] from controllers.AssetsConfiguration in play-dev-mode-akka.actor.default-dispatcher-8 - Using the following cache configuration for assets:
+2019-03-27 11:09:09,683 [DEBUG] from controllers.AssetsConfiguration in play-dev-mode-akka.actor.default-dispatcher-3 - Using the following cache configuration for assets:
 	 enableCaching = false
 	 enableCacheControl = false
 	 defaultCacheControl = public, max-age=3600
@@ -6,75 +6,49 @@
 	 configuredCacheControl:
 
 
-2019-03-20 11:01:36,646 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-8 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2019-03-27 11:09:09,745 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-3 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     play.filters.cors.CORSFilter
 
-2019-03-20 11:01:38,162 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-8 - Application started (Dev)
-2019-03-20 11:21:59,968 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - Displaying headers :-------------------------------------------------------------------
-2019-03-20 11:22:00,046 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: Host, value: localhost:4200
-2019-03-20 11:22:00,047 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: Accept, value: application/json, text/plain, */*
-2019-03-20 11:22:00,047 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: referer, value: http://localhost:4200/
-2019-03-20 11:22:00,047 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: Connection, value: close
-2019-03-20 11:22:00,047 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: user-agent, value: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
-2019-03-20 11:22:00,047 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: x-auth-token, value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLWt4VXZ5SWU1OHBxZW1XYUVLVWsyczNDSHhObWdrdXF5U2tVVzdcL2xzWDdLeVg2ZHdLMTU5KzVCRlwvYXVMN0g2RVRKdk5Eeng0T2d5TjdKcWZRaWs0WVwvZDFieXFrUlFpTUxFMng5U0luM0E9PSIsImlzcyI6InBsYXktc2lsaG91ZXR0ZSIsImV4cCI6MTU1MzEzODUxOSwiaWF0IjoxNTUzMDk1MzE5LCJqdGkiOiJlM2FkMDlkZmYxNjA3YjQ0MjBjNmMzYmZhZmQ5ZGY2MDY0MjFjMWZiNTMwZWQxZDllZmNkNWFjZGViNmJlN2UxZTRlZTY2NzAwNTY4M2JkZWQzYTgxYzNiNjhiYTkyMmY5MWZjZmNkYzY2NTg0ZDVjNzIwMzZiN2ViMWFhODAyOGNkMDRkN2QwNTAzYmI4Nzg3NDZhNTQ2ZGUwZjA1MzkwMWM0MGRhMTQ3Y2E0NDcyOTJjMzgyODJlZWUyMDU0MGQ3MTY3MTdlNDU0NmU0YjRiMmQ1ZGZiYmRjNWM1YWI0YmEwYzYwMDE5YjI4ODMwYTY5YTE0YTcyYWQwNDkyMGNlIn0.8WMpYeEZ2jFXPbNsmUIqk-HID5I13u0naHHPkYCKlAo
-2019-03-20 11:22:00,047 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: Remote-Address, value: 127.0.0.1:56535
-2019-03-20 11:22:00,047 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: Timeout-Access, value: <function1>
-2019-03-20 11:22:00,047 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: accept-encoding, value: gzip, deflate, br
-2019-03-20 11:22:00,048 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: accept-language, value: en-US,en;q=0.9,fr;q=0.8
-2019-03-20 11:22:00,048 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: Raw-Request-URI, value: /api/badPassword
-2019-03-20 11:22:00,048 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-7726 - key: Tls-Session-Info, value: Session(1553093980078|SSL_NULL_WITH_NULL_NULL)
-2019-03-20 11:26:32,281 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - Displaying headers :-------------------------------------------------------------------
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Host, value: localhost:4200
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Accept, value: application/json, text/plain, */*
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: referer, value: http://localhost:4200/
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Connection, value: close
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: user-agent, value: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: x-auth-token, value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLWt4VXZ5SWU1OHBxZW1XYUVLVWsyczNDSHhObWdrdXF5U2tVVzdcL2xzWDdLeVg2ZHdLMTU5KzVCRlwvYXVMN0g2RVRKdk5Eeng0T2d5TjdKcWZRaWs0WVwvZDFieXFrUlFpTUxFMng5U0luM0E9PSIsImlzcyI6InBsYXktc2lsaG91ZXR0ZSIsImV4cCI6MTU1MzEzODUxOSwiaWF0IjoxNTUzMDk1MzE5LCJqdGkiOiJlM2FkMDlkZmYxNjA3YjQ0MjBjNmMzYmZhZmQ5ZGY2MDY0MjFjMWZiNTMwZWQxZDllZmNkNWFjZGViNmJlN2UxZTRlZTY2NzAwNTY4M2JkZWQzYTgxYzNiNjhiYTkyMmY5MWZjZmNkYzY2NTg0ZDVjNzIwMzZiN2ViMWFhODAyOGNkMDRkN2QwNTAzYmI4Nzg3NDZhNTQ2ZGUwZjA1MzkwMWM0MGRhMTQ3Y2E0NDcyOTJjMzgyODJlZWUyMDU0MGQ3MTY3MTdlNDU0NmU0YjRiMmQ1ZGZiYmRjNWM1YWI0YmEwYzYwMDE5YjI4ODMwYTY5YTE0YTcyYWQwNDkyMGNlIn0.8WMpYeEZ2jFXPbNsmUIqk-HID5I13u0naHHPkYCKlAo
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Remote-Address, value: 127.0.0.1:57654
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Timeout-Access, value: <function1>
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: accept-encoding, value: gzip, deflate, br
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: accept-language, value: en-US,en;q=0.9,fr;q=0.8
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Raw-Request-URI, value: /api/badPassword
-2019-03-20 11:26:32,286 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Tls-Session-Info, value: Session(1553093980078|SSL_NULL_WITH_NULL_NULL)
-2019-03-20 11:29:27,258 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - Displaying headers :-------------------------------------------------------------------
-2019-03-20 11:29:27,259 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: Host, value: localhost:4200
-2019-03-20 11:29:27,259 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: Accept, value: application/json, text/plain, */*
-2019-03-20 11:29:27,259 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: referer, value: http://localhost:4200/
-2019-03-20 11:29:27,259 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: Connection, value: close
-2019-03-20 11:29:27,259 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: user-agent, value: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
-2019-03-20 11:29:27,259 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: x-auth-token, value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLWt4VXZ5SWU1OHBxZW1XYUVLVWsyczNDSHhObWdrdXF5U2tVVzdcL2xzWDdLeVg2ZHdLMTU5KzVCRlwvYXVMN0g2RVRKdk5Eeng0T2d5TjdKcWZRaWs0WVwvZDFieXFrUlFpTUxFMng5U0luM0E9PSIsImlzcyI6InBsYXktc2lsaG91ZXR0ZSIsImV4cCI6MTU1MzEzODUxOSwiaWF0IjoxNTUzMDk1MzE5LCJqdGkiOiJlM2FkMDlkZmYxNjA3YjQ0MjBjNmMzYmZhZmQ5ZGY2MDY0MjFjMWZiNTMwZWQxZDllZmNkNWFjZGViNmJlN2UxZTRlZTY2NzAwNTY4M2JkZWQzYTgxYzNiNjhiYTkyMmY5MWZjZmNkYzY2NTg0ZDVjNzIwMzZiN2ViMWFhODAyOGNkMDRkN2QwNTAzYmI4Nzg3NDZhNTQ2ZGUwZjA1MzkwMWM0MGRhMTQ3Y2E0NDcyOTJjMzgyODJlZWUyMDU0MGQ3MTY3MTdlNDU0NmU0YjRiMmQ1ZGZiYmRjNWM1YWI0YmEwYzYwMDE5YjI4ODMwYTY5YTE0YTcyYWQwNDkyMGNlIn0.8WMpYeEZ2jFXPbNsmUIqk-HID5I13u0naHHPkYCKlAo
-2019-03-20 11:29:27,259 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: Remote-Address, value: 127.0.0.1:58360
-2019-03-20 11:29:27,260 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: Timeout-Access, value: <function1>
-2019-03-20 11:29:27,260 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: accept-encoding, value: gzip, deflate, br
-2019-03-20 11:29:27,260 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: accept-language, value: en-US,en;q=0.9,fr;q=0.8
-2019-03-20 11:29:27,260 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: Raw-Request-URI, value: /api/badPassword
-2019-03-20 11:29:27,260 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-18185 - key: Tls-Session-Info, value: Session(1553093980078|SSL_NULL_WITH_NULL_NULL)
-2019-03-20 11:29:54,429 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - Displaying headers :-------------------------------------------------------------------
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Host, value: localhost:4200
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Accept, value: application/json, text/plain, */*
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: referer, value: http://localhost:4200/
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Connection, value: close
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: user-agent, value: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: x-auth-token, value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLWt4VXZ5SWU1OHBxZW1XYUVLVWsyczNDSHhObWdrdXF5U2tVVzdcL2xzWDdLeVg2ZHdLMTU5KzVCRlwvYXVMN0g2RVRKdk5Eeng0T2d5TjdKcWZRaWs0WVwvZDFieXFrUlFpTUxFMng5U0luM0E9PSIsImlzcyI6InBsYXktc2lsaG91ZXR0ZSIsImV4cCI6MTU1MzEzODUxOSwiaWF0IjoxNTUzMDk1MzE5LCJqdGkiOiJlM2FkMDlkZmYxNjA3YjQ0MjBjNmMzYmZhZmQ5ZGY2MDY0MjFjMWZiNTMwZWQxZDllZmNkNWFjZGViNmJlN2UxZTRlZTY2NzAwNTY4M2JkZWQzYTgxYzNiNjhiYTkyMmY5MWZjZmNkYzY2NTg0ZDVjNzIwMzZiN2ViMWFhODAyOGNkMDRkN2QwNTAzYmI4Nzg3NDZhNTQ2ZGUwZjA1MzkwMWM0MGRhMTQ3Y2E0NDcyOTJjMzgyODJlZWUyMDU0MGQ3MTY3MTdlNDU0NmU0YjRiMmQ1ZGZiYmRjNWM1YWI0YmEwYzYwMDE5YjI4ODMwYTY5YTE0YTcyYWQwNDkyMGNlIn0.8WMpYeEZ2jFXPbNsmUIqk-HID5I13u0naHHPkYCKlAo
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Remote-Address, value: 127.0.0.1:58479
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Timeout-Access, value: <function1>
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: accept-encoding, value: gzip, deflate, br
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: accept-language, value: en-US,en;q=0.9,fr;q=0.8
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Raw-Request-URI, value: /api/badPassword
-2019-03-20 11:29:54,431 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16127 - key: Tls-Session-Info, value: Session(1553093980078|SSL_NULL_WITH_NULL_NULL)
-2019-03-20 11:30:16,849 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - Displaying headers :-------------------------------------------------------------------
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: Host, value: localhost:4200
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: Accept, value: application/json, text/plain, */*
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: referer, value: http://localhost:4200/
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: Connection, value: close
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: user-agent, value: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: x-auth-token, value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLWt4VXZ5SWU1OHBxZW1XYUVLVWsyczNDSHhObWdrdXF5U2tVVzdcL2xzWDdLeVg2ZHdLMTU5KzVCRlwvYXVMN0g2RVRKdk5Eeng0T2d5TjdKcWZRaWs0WVwvZDFieXFrUlFpTUxFMng5U0luM0E9PSIsImlzcyI6InBsYXktc2lsaG91ZXR0ZSIsImV4cCI6MTU1MzEzODUxOSwiaWF0IjoxNTUzMDk1MzE5LCJqdGkiOiJlM2FkMDlkZmYxNjA3YjQ0MjBjNmMzYmZhZmQ5ZGY2MDY0MjFjMWZiNTMwZWQxZDllZmNkNWFjZGViNmJlN2UxZTRlZTY2NzAwNTY4M2JkZWQzYTgxYzNiNjhiYTkyMmY5MWZjZmNkYzY2NTg0ZDVjNzIwMzZiN2ViMWFhODAyOGNkMDRkN2QwNTAzYmI4Nzg3NDZhNTQ2ZGUwZjA1MzkwMWM0MGRhMTQ3Y2E0NDcyOTJjMzgyODJlZWUyMDU0MGQ3MTY3MTdlNDU0NmU0YjRiMmQ1ZGZiYmRjNWM1YWI0YmEwYzYwMDE5YjI4ODMwYTY5YTE0YTcyYWQwNDkyMGNlIn0.8WMpYeEZ2jFXPbNsmUIqk-HID5I13u0naHHPkYCKlAo
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: Remote-Address, value: 127.0.0.1:58585
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: Timeout-Access, value: <function1>
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: accept-encoding, value: gzip, deflate, br
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: accept-language, value: en-US,en;q=0.9,fr;q=0.8
-2019-03-20 11:30:16,850 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: Raw-Request-URI, value: /api/badPassword
-2019-03-20 11:30:16,851 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-16125 - key: Tls-Session-Info, value: Session(1553093980078|SSL_NULL_WITH_NULL_NULL)
+2019-03-27 11:09:11,251 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-3 - Application started (Dev)
+2019-03-27 11:09:14,265 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - Displaying headers :-------------------------------------------------------------------
+2019-03-27 11:09:14,370 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: Host, value: localhost:4200
+2019-03-27 11:09:14,370 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: Accept, value: application/json, text/plain, */*
+2019-03-27 11:09:14,371 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: referer, value: http://localhost:4200/
+2019-03-27 11:09:14,372 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: Connection, value: close
+2019-03-27 11:09:14,373 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: user-agent, value: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
+2019-03-27 11:09:14,373 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: x-auth-token, value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLUdWNllSOXVPeU9HTHJ4dTFxUFZQWE0rZEVpU3N5WGFrUEg3OExCaWJDQ1Zld1lHNHI3K3d3M0VqTm5jY3hheTRqcDBZMXJcL1doZXliNU1RSUtWWkxWNlwvRzk1QzA0NmtvaXJJZFIrRDI5d3VVb0JUTTE4TFUiLCJpc3MiOiJwbGF5LXNpbGhvdWV0dGUiLCJleHAiOjE1NTM3NDI1NTMsImlhdCI6MTU1MzY5OTM1MywianRpIjoiNmYwYWY3NGNjZDllM2NhMThmYjU5MDk1Y2Y5ZGQ3ZDAyZWJkN2RhZjQ2MGIyNzdhODMxMzkwZTkwODkzNWJjODIxOWExZmMyZGQyYTdiY2I1M2Y2YjFhZTU2MDg5MGYxYWIyNjg3OTkwYmIwZjgzMjZlMDdlN2VkMWNiMWM1ZTRmMzVmNTEzNDI0MzhlNjkwY2FiYjYwZGVjN2Q4MzlhYmNhYmZlZWM5MDZmZTQyNjNkYjczNGRhMmQxYzJhMWU4ZGMxYWM2NDk2ZTM4MWJkNzAxZDIwNjljZjc0MGIzYmZkZmI3N2U4ZTg4MTllOThmZGY4MWRhNTEyYjAzMzZiMSJ9.lssKJzRe7MzNDJyWw-iN5qBKc7aLEw6y3-UhIFrsLjQ
+2019-03-27 11:09:14,374 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: Remote-Address, value: 127.0.0.1:49584
+2019-03-27 11:09:14,374 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: Timeout-Access, value: <function1>
+2019-03-27 11:09:14,375 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: accept-encoding, value: gzip, deflate, br
+2019-03-27 11:09:14,375 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: accept-language, value: en-US,en;q=0.9,fr;q=0.8
+2019-03-27 11:09:14,375 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: Raw-Request-URI, value: /api/badPassword
+2019-03-27 11:09:14,376 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-487 - key: Tls-Session-Info, value: Session(1553699315738|SSL_NULL_WITH_NULL_NULL)
+2019-03-27 11:09:22,309 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - Displaying headers :-------------------------------------------------------------------
+2019-03-27 11:09:22,310 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: Host, value: localhost:4200
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: Accept, value: application/json, text/plain, */*
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: referer, value: http://localhost:4200/
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: Connection, value: close
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: user-agent, value: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: x-auth-token, value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLUdWNllSOXVPeU9HTHJ4dTFxUFZQWE0rZEVpU3N5WGFrUEg3OExCaWJDQ1Zld1lHNHI3K3d3M0VqTm5jY3hheTRqcDBZMXJcL1doZXliNU1RSUtWWkxWNlwvRzk1QzA0NmtvaXJJZFIrRDI5d3VVb0JUTTE4TFUiLCJpc3MiOiJwbGF5LXNpbGhvdWV0dGUiLCJleHAiOjE1NTM3NDI1NTMsImlhdCI6MTU1MzY5OTM1MywianRpIjoiNmYwYWY3NGNjZDllM2NhMThmYjU5MDk1Y2Y5ZGQ3ZDAyZWJkN2RhZjQ2MGIyNzdhODMxMzkwZTkwODkzNWJjODIxOWExZmMyZGQyYTdiY2I1M2Y2YjFhZTU2MDg5MGYxYWIyNjg3OTkwYmIwZjgzMjZlMDdlN2VkMWNiMWM1ZTRmMzVmNTEzNDI0MzhlNjkwY2FiYjYwZGVjN2Q4MzlhYmNhYmZlZWM5MDZmZTQyNjNkYjczNGRhMmQxYzJhMWU4ZGMxYWM2NDk2ZTM4MWJkNzAxZDIwNjljZjc0MGIzYmZkZmI3N2U4ZTg4MTllOThmZGY4MWRhNTEyYjAzMzZiMSJ9.lssKJzRe7MzNDJyWw-iN5qBKc7aLEw6y3-UhIFrsLjQ
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: Remote-Address, value: 127.0.0.1:49591
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: Timeout-Access, value: <function1>
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: accept-encoding, value: gzip, deflate, br
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: accept-language, value: en-US,en;q=0.9,fr;q=0.8
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: Raw-Request-URI, value: /api/badPassword
+2019-03-27 11:09:22,311 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-479 - key: Tls-Session-Info, value: Session(1553699315738|SSL_NULL_WITH_NULL_NULL)
+2019-03-27 11:09:24,702 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - Displaying headers :-------------------------------------------------------------------
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: Host, value: localhost:4200
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: Accept, value: application/json, text/plain, */*
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: referer, value: http://localhost:4200/
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: Connection, value: close
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: user-agent, value: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: x-auth-token, value: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxLUdWNllSOXVPeU9HTHJ4dTFxUFZQWE0rZEVpU3N5WGFrUEg3OExCaWJDQ1Zld1lHNHI3K3d3M0VqTm5jY3hheTRqcDBZMXJcL1doZXliNU1RSUtWWkxWNlwvRzk1QzA0NmtvaXJJZFIrRDI5d3VVb0JUTTE4TFUiLCJpc3MiOiJwbGF5LXNpbGhvdWV0dGUiLCJleHAiOjE1NTM3NDI1NTMsImlhdCI6MTU1MzY5OTM1MywianRpIjoiNmYwYWY3NGNjZDllM2NhMThmYjU5MDk1Y2Y5ZGQ3ZDAyZWJkN2RhZjQ2MGIyNzdhODMxMzkwZTkwODkzNWJjODIxOWExZmMyZGQyYTdiY2I1M2Y2YjFhZTU2MDg5MGYxYWIyNjg3OTkwYmIwZjgzMjZlMDdlN2VkMWNiMWM1ZTRmMzVmNTEzNDI0MzhlNjkwY2FiYjYwZGVjN2Q4MzlhYmNhYmZlZWM5MDZmZTQyNjNkYjczNGRhMmQxYzJhMWU4ZGMxYWM2NDk2ZTM4MWJkNzAxZDIwNjljZjc0MGIzYmZkZmI3N2U4ZTg4MTllOThmZGY4MWRhNTEyYjAzMzZiMSJ9.lssKJzRe7MzNDJyWw-iN5qBKc7aLEw6y3-UhIFrsLjQ
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: Remote-Address, value: 127.0.0.1:49597
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: Timeout-Access, value: <function1>
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: accept-encoding, value: gzip, deflate, br
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: accept-language, value: en-US,en;q=0.9,fr;q=0.8
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: Raw-Request-URI, value: /api/badPassword
+2019-03-27 11:09:24,704 [DEBUG] from controllers.ApplicationController in scala-execution-context-global-486 - key: Tls-Session-Info, value: Session(1553699315738|SSL_NULL_WITH_NULL_NULL)

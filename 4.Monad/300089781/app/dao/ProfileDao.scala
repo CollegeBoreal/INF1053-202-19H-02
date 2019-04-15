@@ -13,7 +13,7 @@ trait ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
   import profile.api._
   import slick.lifted.ProvenShape
 
-  class ProfileTable(tag: Tag) extends Table[Profile](tag, "profile") {
+  class ProfileTable(tag: Tag) extends Table[Profile](tag, "PROFILES") {
     def profile: Rep[Int] = column[Int]("profile", O.PrimaryKey, O.AutoInc)
 
     def name: Rep[String] =
