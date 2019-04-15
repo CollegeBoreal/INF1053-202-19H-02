@@ -34,6 +34,8 @@ GET     /api/band/all               controllers.BandController.getAll
 ##
 GET     /api/profile/all            controllers.ProfileController.getAll
 
+##
+POST     /api/profile/create/       controllers.ProfileController.CreateProfile
 
 ###
 # summary: Get a list of all customers

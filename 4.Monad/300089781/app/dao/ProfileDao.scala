@@ -4,11 +4,12 @@ import javax.inject.{Inject, Singleton}
 import models.{Band, Profile}
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
+import slick.lifted
 import slick.lifted.TableQuery
 
 import scala.concurrent.{ExecutionContext, Future}
 
-trait  ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
+trait ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
   import profile.api._
   import slick.lifted.ProvenShape
 
@@ -21,15 +22,15 @@ trait  ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
       column[String]("lastname", O.Length(511, varying = true))
     // scalastyle:on magic.number
     def address: Rep[String] =
-      column[String]("lastname", O.Length(511, varying = true))
+      column[String]("address", O.Length(511, varying = true))
     def street: Rep[String] =
-      column[String]("lastname", O.Length(511, varying = true))
+      column[String]("street", O.Length(511, varying = true))
     def city: Rep[String] =
-      column[String]("lastname", O.Length(511, varying = true))
+      column[String]("city", O.Length(511, varying = true))
     def state: Rep[String] =
-      column[String]("lastname", O.Length(511, varying = true))
+      column[String]("state", O.Length(511, varying = true))
     def zip: Rep[String] =
-      column[String]("lastname", O.Length(511, varying = true))
+      column[String]("zip", O.Length(511, varying = true))
 
     // scalastyle:off method.name
     override def * : ProvenShape[Profile] =
@@ -40,13 +41,15 @@ trait  ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 
 @Singleton()
 class ProfileDao @Inject()(
-                             protected val dbConfigProvider: DatabaseConfigProvider)(
-                             implicit executionContext: ExecutionContext)
-  extends ProfileComponent
+    protected val dbConfigProvider: DatabaseConfigProvider)(
+    implicit executionContext: ExecutionContext)
+    extends ProfileEditorComponent
     with HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
 
-  val profile = TableQuery[ProfileTable]
+  val profiles = lifted.TableQuery[ProfileTable]
 
-  def getAll: Future[Seq[Profile]] = db.run(profile.result)
+  def getAll: Future[Seq[Profile]] = db.run(profiles.result)
+
+  def add(profile: Profile) = db.run(profiles += profile)
 }
