@@ -1,6 +1,6 @@
 package controllers
 
-import dao.ProfileDao
+import dao.{ProfilesDao}
 import javax.inject.{Inject, Singleton}
 import models.Profile
 import play.api.libs.json.{Format, JsValue, Json}
@@ -17,7 +17,7 @@ import Json.toJson
 @Singleton()
 class ProfileController @Inject()(
     cc: ControllerComponents,
-    profileDao: ProfileDao)(implicit ec: ExecutionContext)
+    profileDao: ProfilesDao)(implicit ec: ExecutionContext)
     extends AbstractController(cc) {
 
   implicit val fmt: Format[Profile] = Json.format[Profile]
