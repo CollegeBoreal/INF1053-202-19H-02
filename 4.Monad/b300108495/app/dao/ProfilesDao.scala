@@ -11,7 +11,7 @@ trait ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
   import profile.api._
   import slick.lifted.ProvenShape
 
-  class ProfileTable(tag: Tag) extends Table[Profile](tag, "profile") {
+  class ProfileTable(tag: Tag) extends Table[Profile](tag, "PROFILES") {
     def profile: Rep[Int] = column[Int]("profile", O.PrimaryKey, O.AutoInc)
 
     // scalastyle:off magic.number
@@ -21,15 +21,15 @@ trait ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
       column[String]("lastname", O.Length(511, varying = true))
     // scalastyle:on magic.number
     def address: Rep[String] =
-      column[String]("lastname", O.Length(511, varying = true))
+      column[String]("address", O.Length(511, varying = true))
     def street: Rep[String] =
-      column[String]("lastname", O.Length(511, varying = true))
+      column[String]("street", O.Length(511, varying = true))
     def city: Rep[String] =
-      column[String]("lastname", O.Length(511, varying = true))
+      column[String]("city", O.Length(511, varying = true))
     def state: Rep[String] =
-      column[String]("lastname", O.Length(511, varying = true))
+      column[String]("state", O.Length(511, varying = true))
     def zip: Rep[String] =
-      column[String]("lastname", O.Length(511, varying = true))
+      column[String]("zip", O.Length(511, varying = true))
 
     // scalastyle:off method.name
     override def * : ProvenShape[Profile] =
@@ -39,7 +39,7 @@ trait ProfileEditorComponent { self: HasDatabaseConfigProvider[JdbcProfile] =>
 }
 
 @Singleton()
-class ProfileDao @Inject()(
+class ProfilesDao @Inject()(
     protected val dbConfigProvider: DatabaseConfigProvider)(
     implicit executionContext: ExecutionContext)
     extends ProfileEditorComponent
