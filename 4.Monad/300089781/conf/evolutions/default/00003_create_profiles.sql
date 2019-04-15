@@ -12,7 +12,7 @@ CREATE TABLE PROFILES (
   `state` VARCHAR(45) NULL,
   `zip` VARCHAR(45) NULL,
 
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`profile`)
 );
 
 # --- !Downs
