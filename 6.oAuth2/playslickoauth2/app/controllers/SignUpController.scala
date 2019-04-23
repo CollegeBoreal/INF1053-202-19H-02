@@ -9,7 +9,12 @@ import com.mohiva.play.silhouette.api.util.{Clock, PasswordHasherRegistry}
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
 import daos.user.UserDAO
-import io.swagger.annotations.{Api, ApiImplicitParam, ApiImplicitParams, ApiOperation}
+import io.swagger.annotations.{
+  Api,
+  ApiImplicitParam,
+  ApiImplicitParams,
+  ApiOperation
+}
 import models.auth.DefaultEnv
 import models.{SignUp, Token, User}
 import play.api.Configuration
@@ -58,11 +63,10 @@ class SignUpController @Inject()(
         userService.retrieve(loginInfo).flatMap {
           case None =>
             /* user not already exists */
-            val user = User(
-              None,
-              key = loginInfo.providerKey,
-              active = true,
-              created = java.sql.Timestamp.valueOf(java.time.LocalDateTime.now))
+            val user = User(number = "",
+                            providerKey = loginInfo.providerKey,
+                            active = true,
+                            created = java.time.LocalDateTime.now)
 
 //            val token = UUID.randomUUID().toString.replaceAll("-", "")
             val authInfo = passwordHasherRegistry.current.hash(signUp.password)

@@ -2,7 +2,6 @@ package daos.user
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.api.services.IdentityService
-import daos.UserComponent
 import javax.inject.{Inject, Singleton}
 import models.User
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
@@ -13,8 +12,8 @@ import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class UserDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
-  implicit executionContext: ExecutionContext)
-  extends UserDTO
+    implicit executionContext: ExecutionContext)
+    extends UserDTO
     with IdentityService[User]
     with HasDatabaseConfigProvider[JdbcProfile] {
 

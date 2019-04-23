@@ -4,7 +4,12 @@ import daos.user.UserDAO
 import javax.inject.{Inject, Singleton}
 import models.User
 import play.api.libs.json._
-import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
+import play.api.mvc.{
+  AbstractController,
+  Action,
+  AnyContent,
+  ControllerComponents
+}
 
 import scala.concurrent.ExecutionContext
 

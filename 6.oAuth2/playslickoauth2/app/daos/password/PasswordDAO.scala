@@ -14,11 +14,11 @@ import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class PasswordDAO @Inject()(
-                             protected val dbConfigProvider: DatabaseConfigProvider,
-                             loginDao: LoginDAO)(implicit executionContext: ExecutionContext)
-                          extends DelegableAuthInfoDAO[PasswordInfo]
-                            with PasswordDTO
-                            with HasDatabaseConfigProvider[JdbcProfile] {
+    protected val dbConfigProvider: DatabaseConfigProvider,
+    loginDao: LoginDAO)(implicit executionContext: ExecutionContext)
+    extends DelegableAuthInfoDAO[PasswordInfo]
+    with PasswordDTO
+    with HasDatabaseConfigProvider[JdbcProfile] {
 
   import profile.api._
 
@@ -39,13 +39,13 @@ class PasswordDAO @Inject()(
   override def add(loginInfo: LoginInfo,
                    authInfo: PasswordInfo): Future[PasswordInfo] = {
     db.run {
-      loginQuery(loginInfo).result >>
-        (passwords += Password(loginInfo.providerKey,
-          authInfo.password,
-          authInfo.hasher,
-          authInfo.salt)) >>
-        passwords.filter(_.providerKey === loginInfo.providerKey).result
-    }
+        loginQuery(loginInfo).result >>
+          (passwords += Password(loginInfo.providerKey,
+                                 authInfo.password,
+                                 authInfo.hasher,
+                                 authInfo.salt)) >>
+          passwords.filter(_.providerKey === loginInfo.providerKey).result
+      }
       .map(_ => authInfo)
   }
 
@@ -56,42 +56,42 @@ class PasswordDAO @Inject()(
   override def save(loginInfo: LoginInfo,
                     authInfo: PasswordInfo): Future[PasswordInfo] = {
     db.run {
-      for (cs <- joinAction(loginInfo).map(_.head))
-        yield
-          cs match {
-            case (_, Some(oldAuthInfo)) =>
-              passwords
-                .filter(_.providerKey === oldAuthInfo.providerKey)
-                .map(c => (c.hasher, c.secret, c.salt))
-                .update((authInfo.hasher, authInfo.password, authInfo.salt))
-            case (_, None) =>
-              passwords +=
-                Password(loginInfo.providerKey,
-                  authInfo.hasher,
-                  authInfo.password,
-                  authInfo.salt)
-          }
-    }
+        for (cs <- joinAction(loginInfo).map(_.head))
+          yield
+            cs match {
+              case (_, Some(oldAuthInfo)) =>
+                passwords
+                  .filter(_.providerKey === oldAuthInfo.providerKey)
+                  .map(c => (c.hasher, c.secret, c.salt))
+                  .update((authInfo.hasher, authInfo.password, authInfo.salt))
+              case (_, None) =>
+                passwords +=
+                  Password(loginInfo.providerKey,
+                           authInfo.hasher,
+                           authInfo.password,
+                           authInfo.salt)
+            }
+      }
       .map(_ => authInfo)
   }
 
   override def remove(loginInfo: LoginInfo): Future[Unit] =
     db.run {
-      for {(_, Some(oldAuthInfo)) <- joinAction(loginInfo).map(_.head)} yield
-        passwords.filter(_.providerKey === oldAuthInfo.providerKey).delete
-    }
+        for { (_, Some(oldAuthInfo)) <- joinAction(loginInfo).map(_.head) } yield
+          passwords.filter(_.providerKey === oldAuthInfo.providerKey).delete
+      }
       .map(_ => ())
 
   /*
   Credentials Provider is always at 1
    */
   private def loginQuery(
-                          loginInfo: LoginInfo): Query[loginDao.LoginTable, Login, Seq] =
+      loginInfo: LoginInfo): Query[loginDao.LoginTable, Login, Seq] =
     loginDao.logins.filter(fields =>
       fields.providerId === "1" && fields.providerKey === loginInfo.providerKey)
 
   private def joinAction(
-                          loginInfo: LoginInfo): DBIO[Seq[(Login, Option[Password])]] =
+      loginInfo: LoginInfo): DBIO[Seq[(Login, Option[Password])]] =
     (loginQuery(loginInfo) joinLeft passwords on (_.providerKey === _.providerKey)).result
 
 }

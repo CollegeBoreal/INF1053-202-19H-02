@@ -31,7 +31,7 @@ abstract class UserDTO { self: HasDatabaseConfigProvider[JdbcProfile] =>
 
     // scalastyle:off method.name
     override def * : ProvenShape[User] =
-      (number, providerKey, active, created, user).mapTo[User]
+      (number, providerKey, active, created, user) <> (User.tupled, User.unapply)
     // scalastyle:on method.name
 
   }

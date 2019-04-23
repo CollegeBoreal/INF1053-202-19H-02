@@ -5,12 +5,21 @@ import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.api.exceptions.ProviderException
 import com.mohiva.play.silhouette.api.repositories.AuthInfoRepository
 import com.mohiva.play.silhouette.api.services.AuthenticatorService
-import com.mohiva.play.silhouette.api.util.{Clock, Credentials, PasswordHasherRegistry}
+import com.mohiva.play.silhouette.api.util.{
+  Clock,
+  Credentials,
+  PasswordHasherRegistry
+}
 import com.mohiva.play.silhouette.impl.authenticators.JWTAuthenticator
 import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
 import com.mohiva.play.silhouette.impl.providers._
 import daos.user.UserDAO
-import io.swagger.annotations.{Api, ApiImplicitParam, ApiImplicitParams, ApiOperation}
+import io.swagger.annotations.{
+  Api,
+  ApiImplicitParam,
+  ApiImplicitParams,
+  ApiOperation
+}
 import models.{EmailCredential, Token}
 import models.auth.DefaultEnv
 import play.api.Configuration

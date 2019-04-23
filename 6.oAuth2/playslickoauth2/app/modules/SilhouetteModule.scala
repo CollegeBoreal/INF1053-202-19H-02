@@ -39,7 +39,9 @@ import com.mohiva.play.silhouette.password.{
 }
 import com.mohiva.play.silhouette.persistence.daos.DelegableAuthInfoDAO
 import com.mohiva.play.silhouette.persistence.repositories.DelegableAuthInfoRepository
-import daos.{AuthenticatorDao, PasswordDao, UserDAO}
+import daos.authenticator.AuthenticatorDAO
+import daos.password.PasswordDAO
+import daos.user.UserDAO
 import models.User
 import models.auth.{
   CustomSecuredErrorHandler,
@@ -70,9 +72,9 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
     // @provides provideEnvironment [Implementation]
     bind[IdentityService[User]].to[UserDAO]
     // @provides provideAuthenticatorService
-    bind[AuthenticatorRepository[JWTAuthenticator]].to[AuthenticatorDao]
+    bind[AuthenticatorRepository[JWTAuthenticator]].to[AuthenticatorDAO]
     // @provides provideAuthInfoRepository
-    bind[DelegableAuthInfoDAO[PasswordInfo]].to[PasswordDao]
+    bind[DelegableAuthInfoDAO[PasswordInfo]].to[PasswordDAO]
   }
 
   /**
@@ -143,7 +145,7 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
     val settings = JWTAuthenticatorSettings(
       sharedSecret = configuration.get[String]("play.http.secret.key"))
     val encoder = new CrypterAuthenticatorEncoder(crypter)
-    val authenticatorRepository = new AuthenticatorDao(dbConfigProvider)
+    val authenticatorRepository = new AuthenticatorDAO(dbConfigProvider)
 
     new JWTAuthenticatorService(settings,
                                 Some(authenticatorRepository),

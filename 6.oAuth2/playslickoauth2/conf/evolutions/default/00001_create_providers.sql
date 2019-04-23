@@ -2,9 +2,9 @@
 
 # --- !Ups
 CREATE TABLE IF NOT EXISTS `PROVIDERS` (
-  `provider` INT NOT NULL AUTO_INCREMENT,
+  `providerId` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`provider`),
+  PRIMARY KEY (`providerId`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC)
 );
 

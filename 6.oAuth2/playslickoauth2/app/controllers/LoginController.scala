@@ -6,7 +6,7 @@ import models.Login
 import play.api.libs.json.{Format, Json}
 import play.api.mvc._
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.ExecutionContext
 
 @Singleton()
 class LoginController @Inject()(cc: ControllerComponents, loginDao: LoginDAO)(

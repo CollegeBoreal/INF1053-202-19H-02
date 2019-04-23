@@ -7,14 +7,15 @@
 
 CREATE TABLE IF NOT EXISTS `USERS` (
   `user` INT NOT NULL AUTO_INCREMENT,
-  `key` VARCHAR(45) NOT NULL,
+  `number` VARCHAR(45) NULL,
+  `providerkey` VARCHAR(45) NOT NULL,
   `active` INT NOT NULL,
   `created` DATETIME NOT NULL,
   PRIMARY KEY (`user`),
-  UNIQUE INDEX `key_UNIQUE` (`key` ASC),
+  UNIQUE INDEX `key_UNIQUE` (`providerkey` ASC),
   CONSTRAINT `constraint_user_key`
-    FOREIGN KEY (`key`)
-    REFERENCES `PASSWORDS` (`key`)
+    FOREIGN KEY (`providerkey`)
+    REFERENCES `PASSWORDS` (`providerkey`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 

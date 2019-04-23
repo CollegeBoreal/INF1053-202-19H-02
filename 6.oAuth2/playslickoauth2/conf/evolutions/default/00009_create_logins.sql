@@ -5,18 +5,18 @@
 
 # --- !Ups
 CREATE TABLE IF NOT EXISTS `LOGINS` (
-  `provider` INT NOT NULL,
-  `key` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`provider`, `key`),
-  INDEX `key_idx` (`key` ASC),
+  `providerId` VARCHAR(45) NOT NULL,
+  `providerKey` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`providerId`, `providerKey`),
+  INDEX `key_idx` (`providerKey` ASC),
   CONSTRAINT `constraint_login_provider`
-    FOREIGN KEY (`provider`)
-    REFERENCES `PROVIDERS` (`provider`)
+    FOREIGN KEY (`providerId`)
+    REFERENCES `PROVIDERS` (`providerId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `constraint_login_key`
-    FOREIGN KEY (`key`)
-    REFERENCES `USERS` (`key`)
+    FOREIGN KEY (`providerKey`)
+    REFERENCES `USERS` (`providerKey`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );

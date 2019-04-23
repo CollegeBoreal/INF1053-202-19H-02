@@ -22,6 +22,7 @@ class AuthenticatorDAO @Inject()(
     with AuthenticatorRepository[JWTAuthenticator] {
 
   import profile.api._
+  import AuthenticatorTable._
 
   val authenticators = lifted.TableQuery[AuthenticatorTable]
 
@@ -49,9 +50,8 @@ class AuthenticatorDAO @Inject()(
           fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
         .exists
     db.run {
-        lazy val current = java.util.Calendar.getInstance().getTimeInMillis
-        lazy val lastUsed = new LocalDateTime(current)
-        lazy val expiration = new LocalDateTime(current + (12 * 3600000))
+        lazy val lastUsed = LocalDateTime.now
+        lazy val expiration = lastUsed.plusDays(1)
         /*
                   authenticators
                     .filter(fields => fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
@@ -74,9 +74,8 @@ class AuthenticatorDAO @Inject()(
   override def update(
       authenticator: JWTAuthenticator): Future[JWTAuthenticator] =
     db.run {
-        lazy val current = java.util.Calendar.getInstance().getTimeInMillis
-        lazy val lastUsed = new java.sql.Timestamp(current)
-        lazy val expiration = new java.sql.Timestamp(current + (12 * 3600000))
+        lazy val lastUsed = LocalDateTime.now
+        lazy val expiration = lastUsed.plusDays(1)
 
         authenticators
           .filter(fields =>

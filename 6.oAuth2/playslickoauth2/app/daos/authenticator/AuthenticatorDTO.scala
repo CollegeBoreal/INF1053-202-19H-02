@@ -41,7 +41,8 @@ trait AuthenticatorDTO {
 
     // scalastyle:off method.name
     override def * : ProvenShape[Authenticator] =
-      (provider, key, lastUsed, expiration, idleTimeOut, duration, id).mapTo[Authenticator]
+      (provider, key, lastUsed, expiration, idleTimeOut, duration, id)
+        .mapTo[Authenticator]
 
     // scalastyle:on method.name
 

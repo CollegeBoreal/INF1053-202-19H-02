@@ -1,9 +1,12 @@
 package models
 
+import java.time.LocalDateTime
+
 import com.mohiva.play.silhouette.api.Identity
 
-case class User(user: Option[Int],
-                key: String,
+case class User(number: String,
+                providerKey: String,
                 active: Boolean,
-                created: java.sql.Timestamp)
+                created: LocalDateTime,
+                user: Long = 0)
     extends Identity
