@@ -33,17 +33,21 @@ class PasswordDAO @Inject()(
           .filter(_.providerKey === loginInfo.providerKey)
           .result
           .map(_.headOption)
-      } yield Some(PasswordInfo(fields.hasher, fields.secret, fields.salt))
+      } yield
+        Some(
+          PasswordInfo(hasher = fields.hasher,
+                       password = fields.password,
+                       salt = fields.salt))
     }
 
   override def add(loginInfo: LoginInfo,
                    authInfo: PasswordInfo): Future[PasswordInfo] = {
     db.run {
         loginQuery(loginInfo).result >>
-          (passwords += Password(loginInfo.providerKey,
-                                 authInfo.password,
-                                 authInfo.hasher,
-                                 authInfo.salt)) >>
+          (passwords += Password(providerKey = loginInfo.providerKey,
+                                 hasher = authInfo.hasher,
+                                 password = authInfo.password,
+                                 salt = authInfo.salt)) >>
           passwords.filter(_.providerKey === loginInfo.providerKey).result
       }
       .map(_ => authInfo)
@@ -62,14 +66,14 @@ class PasswordDAO @Inject()(
               case (_, Some(oldAuthInfo)) =>
                 passwords
                   .filter(_.providerKey === oldAuthInfo.providerKey)
-                  .map(c => (c.hasher, c.secret, c.salt))
+                  .map(c => (c.hasher, c.password, c.salt))
                   .update((authInfo.hasher, authInfo.password, authInfo.salt))
               case (_, None) =>
                 passwords +=
                   Password(loginInfo.providerKey,
-                           authInfo.hasher,
-                           authInfo.password,
-                           authInfo.salt)
+                           hasher = authInfo.hasher,
+                           password = authInfo.password,
+                           salt = authInfo.salt)
             }
       }
       .map(_ => authInfo)
