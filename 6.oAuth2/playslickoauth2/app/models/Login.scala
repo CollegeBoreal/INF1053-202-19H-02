@@ -1,3 +1,3 @@
 package models
 
-case class Login(provider: Int, key: String)
+case class Login(provider: String, key: String)

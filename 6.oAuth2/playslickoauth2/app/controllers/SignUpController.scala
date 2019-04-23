@@ -8,13 +8,8 @@ import com.mohiva.play.silhouette.api.services.AvatarService
 import com.mohiva.play.silhouette.api.util.{Clock, PasswordHasherRegistry}
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
-import daos.UserDAO
-import io.swagger.annotations.{
-  Api,
-  ApiImplicitParam,
-  ApiImplicitParams,
-  ApiOperation
-}
+import daos.user.UserDAO
+import io.swagger.annotations.{Api, ApiImplicitParam, ApiImplicitParams, ApiOperation}
 import models.auth.DefaultEnv
 import models.{SignUp, Token, User}
 import play.api.Configuration

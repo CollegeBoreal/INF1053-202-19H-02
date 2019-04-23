@@ -1,7 +1,6 @@
-package daos
+package daos.authenticator
 
-import java.sql.Timestamp
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import javax.inject.{Inject, Singleton}
@@ -12,56 +11,13 @@ import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 import slick.lifted
 
-import scala.concurrent.duration.FiniteDuration._
 import scala.concurrent.{ExecutionContext, Future}
 
-trait AuthenticatorComponent {
-  self: HasDatabaseConfigProvider[JdbcProfile] =>
-
-  import profile.api._
-  import slick.lifted.ProvenShape
-
-  class AuthenticatorTable(tag: Tag)
-      extends Table[Authenticator](tag, "AUTHENTICATORS") {
-
-
-
-    // scalastyle:off magic.number
-    def provider: Rep[Int] = column[Int]("provider", O.PrimaryKey)
-
-    def key: Rep[String] =
-      column[String]("key", O.Length(45, varying = true), O.PrimaryKey)
-
-    def lastUsed: Rep[java.time.LocalDateTime] =
-      column[java.time.LocalDateTime]("lastUsed")
-
-    def expiration: Rep[java.sql.Timestamp] =
-      column[java.sql.Timestamp]("expiration")
-
-    def idleTimeOut: Rep[Int] = column[Int]("idleTimeOut")
-
-    def duration: Rep[Int] = column[Int]("duration")
-
-    def id: Rep[String] =
-      column[String]("id", O.Length(300, varying = true))
-
-    // scalastyle:on magic.number
-
-    // scalastyle:off method.name
-    override def * : ProvenShape[Authenticator] =
-      (provider, key, lastUsed, expiration, idleTimeOut, duration, id) <> (Authenticator.tupled, Authenticator.unapply)
-
-    // scalastyle:on method.name
-
-  }
-
-}
-
 @Singleton
-class AuthenticatorDao @Inject()(
+class AuthenticatorDAO @Inject()(
     protected val dbConfigProvider: DatabaseConfigProvider)(
     implicit executionContext: ExecutionContext)
-    extends AuthenticatorComponent
+    extends AuthenticatorDTO
     with HasDatabaseConfigProvider[JdbcProfile]
     with AuthenticatorRepository[JWTAuthenticator] {
 
@@ -94,8 +50,8 @@ class AuthenticatorDao @Inject()(
         .exists
     db.run {
         lazy val current = java.util.Calendar.getInstance().getTimeInMillis
-        lazy val lastUsed = new java.sql.Timestamp(current)
-        lazy val expiration = new java.sql.Timestamp(current + (12 * 3600000))
+        lazy val lastUsed = new LocalDateTime(current)
+        lazy val expiration = new LocalDateTime(current + (12 * 3600000))
         /*
                   authenticators
                     .filter(fields => fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
