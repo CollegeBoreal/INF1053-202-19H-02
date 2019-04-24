@@ -38,35 +38,32 @@ class AuthenticatorDAO @Inject()(
                              new org.joda.time.DateTime(x.lastUsed),
                              new org.joda.time.DateTime(x.expiration),
                              None))
-//        case _ => None
+        case _ => None
       }
   }
 
   override def add(
       authenticator: JWTAuthenticator): Future[JWTAuthenticator] = {
-    val exists =
-      authenticators
-        .filter(fields =>
-          fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
-        .exists
     db.run {
         lazy val lastUsed = LocalDateTime.now
         lazy val expiration = lastUsed.plusDays(1)
-        /*
-                  authenticators
-                    .filter(fields => fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
-                    .map(fields => (fields.lastUsed, fields.expiration))
-                    .update((new java.sql.Timestamp(authenticator.lastUsedDateTime.getMillis), new java.sql.Timestamp(authenticator.expirationDateTime.getMillis)))
-         */
-        //            case (_, None) =>
-        authenticators +=
-          Authenticator(1,
-                        authenticator.loginInfo.providerKey,
-                        lastUsed,
-                        expiration,
-                        0,
-                        32400,
-                        authenticator.id)
+        val auth = Authenticator(1,
+                                 authenticator.loginInfo.providerKey,
+                                 lastUsed,
+                                 expiration,
+                                 0,
+                                 32400,
+                                 authenticator.id)
+        for {
+          existing <- authenticators
+            .filter(fields =>
+              fields.provider === 1 && fields.key === authenticator.loginInfo.providerKey)
+            .result
+            .headOption
+          row = existing.map(
+            _.copy(lastUsed = lastUsed, expiration = expiration)) getOrElse auth
+          result <- authenticators.insertOrUpdate(row)
+        } yield result
       }
       .map(_ => authenticator)
   }
