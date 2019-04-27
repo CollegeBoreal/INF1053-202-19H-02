@@ -1,10 +1,7 @@
 package controllers
 
-//import java.sql.Timestamp
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-
 import com.mohiva.play.silhouette.api.Silhouette
+import com.mohiva.play.silhouette.api.actions.SecuredActionBuilder
 import io.swagger.annotations.{Api, ApiOperation}
 import javax.inject.Inject
 import models.auth.DefaultEnv
@@ -24,9 +21,10 @@ class ApplicationController @Inject()(components: ControllerComponents,
     extends AbstractController(components) {
 
   val logger: Logger = Logger(this.getClass)
+  val SecuredAction: SecuredActionBuilder[DefaultEnv,AnyContent] = silhouette.SecuredAction
 
   @ApiOperation(value = "Get bad password value")
-  def badPassword: Action[AnyContent] = silhouette.SecuredAction.async {
+  def badPassword: Action[AnyContent] = SecuredAction.async {
     implicit request =>
       if (logger.isDebugEnabled) {
         logger.debug(
