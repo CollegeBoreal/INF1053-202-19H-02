@@ -21,7 +21,8 @@ class ApplicationController @Inject()(components: ControllerComponents,
     extends AbstractController(components) {
 
   val logger: Logger = Logger(this.getClass)
-  val SecuredAction: SecuredActionBuilder[DefaultEnv,AnyContent] = silhouette.SecuredAction
+  val SecuredAction: SecuredActionBuilder[DefaultEnv, AnyContent] =
+    silhouette.SecuredAction
 
   @ApiOperation(value = "Get bad password value")
   def badPassword: Action[AnyContent] = SecuredAction.async {
