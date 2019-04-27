@@ -1,6 +1,6 @@
 package daos.authenticator
 
-import java.time.LocalDateTime
+import java.time.{LocalDateTime, ZoneOffset}
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import javax.inject.{Inject, Singleton}
@@ -27,19 +27,23 @@ class AuthenticatorDAO @Inject()(
   val authenticators = lifted.TableQuery[AuthenticatorTable]
 
   override def find(id: String): Future[Option[JWTAuthenticator]] = db.run {
-    for {
-      auth <- authenticators.filter(_.id === id).result.map(_.headOption)
-    } yield
-      auth match {
-        case Some(x) =>
-          Some(
-            JWTAuthenticator(id,
-                             LoginInfo("credentials", x.key),
-                             new org.joda.time.DateTime(x.lastUsed),
-                             new org.joda.time.DateTime(x.expiration),
-                             None))
-        case _ => None
-      }
+    for (auth <- authenticators.filter(_.id === id).result.map(_.headOption))
+      yield
+        auth match {
+          case Some(x) =>
+            Some(
+              JWTAuthenticator(
+                id,
+                LoginInfo("credentials", x.key),
+                new org.joda.time.DateTime(
+                  x.lastUsed.toInstant(ZoneOffset.UTC).toEpochMilli),
+                new org.joda.time.DateTime(
+                  x.expiration.toInstant(ZoneOffset.UTC).toEpochMilli),
+                None
+              )
+            )
+          case _ => None
+        }
   }
 
   override def add(
