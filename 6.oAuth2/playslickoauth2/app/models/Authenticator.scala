@@ -1,9 +1,11 @@
 package models
 
+import java.time.LocalDateTime
+
 case class Authenticator(provider: Int,
                          key: String,
-                         lastUsed: java.time.LocalDateTime,
-                         expiration: java.time.LocalDateTime,
+                         lastUsed: LocalDateTime,
+                         expiration: LocalDateTime,
                          idleTimeOut: Int,
                          duration: Int,
                          id: String)
